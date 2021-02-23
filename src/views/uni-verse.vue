@@ -1,7 +1,17 @@
 <template>
   <div class="uni-verse">
     <h1>UNI-verse</h1>
-    <svg width="1000" height="800"></svg>
+    <svg width="1000" height="800">
+        <filter id="shadow">
+          <feDropShadow 
+            dx="0"
+            dy="0"
+            stdDeviation="14"
+            floodColor="#000000"
+            floodOpacity="0.5"
+          />
+      </filter>
+    </svg>
   </div>
 </template>
 
@@ -114,3 +124,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+svg >>> .nodes {
+  filter: url(#shadow)
+}
+
+</style>
