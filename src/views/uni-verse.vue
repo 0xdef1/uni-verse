@@ -150,7 +150,7 @@ export default {
 
     simulation.nodes(graph.nodes).on("tick", ticked);
     simulation.force("link").links(graph.links);
-    simulation.tick(200);
+    //simulation.tick(200);
 
     function ticked() {
       link
@@ -162,7 +162,7 @@ export default {
         return "translate(" + d.x + "," + d.y + ")";
       });
 
-      simulation.stop();
+      //simulation.stop();
     }
 
     function radius(d) {
