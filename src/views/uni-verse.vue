@@ -7,12 +7,15 @@
       <b>Node Size:</b> Liquidity ($)<br/>
       <b>Node Color:</b> 24hr Volume ($)<br/>
       <b>Links:</b> Frequency of transactions that contain swaps in both pools</p>
-      <p>By <a href="https://twitter.com/0xdef1">@0xdef1</a></p>
+      <p>By <b><a href="https://twitter.com/0xdef1">@0xdef1</a></b></p>
+      <div style="font-size: 16px">
       <p>Credits:<br/>
-      <b><a href="https://twitter.com/flipsidecrypto">@flipsidecrypto</a></b> for data<br/>
-      <b><a href="https://twitter.com/will__price">@will__price</a></b> for review<br/>
+      <a href="https://twitter.com/flipsidecrypto">@flipsidecrypto</a> for data<br/>
+      <a href="https://twitter.com/will__price">@will__price</a> for review<br/>
       </p>
       <p>Last updated: Feb. 24, 2021</p>
+
+      </div>
       
     </div>
     <svg width="1000" height="1080">
@@ -148,9 +151,15 @@ export default {
       window.open("https://info.uniswap.org/pair/" + d.id, "_blank");
     });
 
+    var ua = window.navigator.userAgent;
+    var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+    if (iOS) {
+      svg.select('.nodes').style('filter', 'none');
+    }
+
     simulation.nodes(graph.nodes).on("tick", ticked);
     simulation.force("link").links(graph.links);
-    simulation.tick(200);
+    //simulation.tick(200);
 
     function ticked() {
       link
@@ -162,7 +171,7 @@ export default {
         return "translate(" + d.x + "," + d.y + ")";
       });
 
-      simulation.stop();
+      //simulation.stop();
     }
 
     function radius(d) {
