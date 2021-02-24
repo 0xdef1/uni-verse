@@ -1,13 +1,13 @@
 <template>
   <div class="uni-verse">
     <h1>THE UNI-VERSE</h1>
-    <div style="margin-top: -40px; font-weight: bold;">by <a href="https://twitter.com/0xdef1">@0xdef1</a></div>
     <div id="container">
     <div id="explainer">
       <p><b>Nodes:</b> Uniswap Liquidity Pools<br/>
       <b>Node Size:</b> Liquidity ($)<br/>
       <b>Node Color:</b> 24hr Volume ($)<br/>
       <b>Links:</b> Frequency of transactions that contain swaps in both pools</p>
+      <p>By <a href="https://twitter.com/0xdef1">@0xdef1</a></p>
       <p>Credits:<br/>
       <b><a href="https://twitter.com/flipsidecrypto">@flipsidecrypto</a></b> for data<br/>
       <b><a href="https://twitter.com/will__price">@will__price</a></b> for review<br/>
@@ -200,9 +200,9 @@ export default {
 
 <style scoped>
 
-/* svg >>> .nodes {
+svg >>> .nodes {
   filter: url(#shadow);
-} */
+} 
 
 svg >>> .nodes circle {
   cursor: pointer;
