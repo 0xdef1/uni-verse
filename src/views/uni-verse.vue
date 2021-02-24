@@ -200,9 +200,9 @@ export default {
 
 <style scoped>
 
-svg >>> .nodes {
+/* svg >>> .nodes {
   filter: url(#shadow);
-}
+} */
 
 svg >>> .nodes circle {
   cursor: pointer;
