@@ -47,7 +47,6 @@
 <script>
 import graph from "../data/graph.js";
 var d3 = require("d3");
-console.log(graph);
 
 export default {
   name: "UNI-verse",
@@ -64,7 +63,6 @@ export default {
     var svg = d3.select("svg"),
       width = +svg.attr("width"),
       height = +svg.attr("height");
-    console.log(width + height);
 
     var color = d3
       .scaleSequential(d3.interpolateYlOrRd)
@@ -122,8 +120,8 @@ export default {
         tip.transition().duration(100).style("opacity", 1);
         tip.style("left", event.pageX + "px").style("top", event.pageY + "px");
         tipname.text(d.poolName);
-        tipliq.text('liq: ' + abbreviateNumber(d.trackedReserveETH * 1800));
-        tipvol.text('vol: ' + abbreviateNumber(d.volumeUSD));
+        tipliq.text('liq: $' + abbreviateNumber(d.trackedReserveETH * 1800));
+        tipvol.text('vol: $' + abbreviateNumber(d.volumeUSD));
       })
       .on("mousemove", function (event) {
         tip.style("left", event.pageX + "px").style("top", event.pageY + "px");
