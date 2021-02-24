@@ -150,7 +150,7 @@ export default {
 
     simulation.nodes(graph.nodes).on("tick", ticked);
     simulation.force("link").links(graph.links);
-    simulation.tick(1);
+    //simulation.tick(200);
 
     function ticked() {
       link
@@ -201,7 +201,7 @@ export default {
 <style scoped>
 
 svg >>> .nodes {
-  filter: url(#shadow);
+  /*filter: url(#shadow);*/
 }
 
 svg >>> .nodes circle {
@@ -212,11 +212,12 @@ svg >>> .links line {
   stroke: #fff;
   stroke-opacity: 0.0075;
 }
-
+/*
 svg >>> .nodes circle {
   stroke: #00000060;
   stroke-width: 3px;
 }
+*/
 
 .tooltip {
   position: absolute;
@@ -226,7 +227,7 @@ svg >>> .nodes circle {
   padding: 2px;
   pointer-events: none;
   opacity: 0;
-  filter: url(#sofGlow);
+  /*filter: url(#sofGlow);*/
   font-size: 20px;
 }
 
