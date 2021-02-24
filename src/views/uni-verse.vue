@@ -2,6 +2,21 @@
   <div class="uni-verse">
     <h1>THE UNI-VERSE</h1>
     <div style="margin-top: -40px; font-weight: bold;">by <a href="https://twitter.com/0xdef1">@0xdef1</a></div>
+    <div id="container">
+    <div id="explainer">
+      <p><b>Nodes:</b> Uniswap Liquidity Pools<br/>
+      <b>Node Size:</b> Liquidity ($)<br/>
+      <b>Node Color:</b> 24hr Volume ($)<br/>
+      <b>Links:</b> Frequency of transactions that contain swaps in both pools</p>
+
+      <p>Credits:<br/>
+      <b><a href="https://twitter.com/flipsidecrypto">@flipsidecrypto</a></b> for data<br/>
+      <b><a href="https://twitter.com/will__price">@will__price</a></b> for review<br/>
+       
+
+      </p>
+      
+    </div>
     <svg width="1000" height="1080">
       <filter id="shadow">
         <feDropShadow
@@ -13,6 +28,7 @@
         />
       </filter>
     </svg>
+    </div>
     <div ref="tooltip" class="tooltip">
       <svg width="300" height="100">
         <filter id="sofGlow" height="300%" width="300%" x="-75%" y="-75%">
@@ -226,4 +242,20 @@ svg >>> .nodes circle {
   fill: #fff;
   opacity: 0.6;
 }
+
+#container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#explainer {
+  margin-top: 50px;
+  width: 300px;
+  text-align: left;
+  color: #ffffffa0
+}
+
 </style>
