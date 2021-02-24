@@ -150,7 +150,7 @@ export default {
 
     simulation.nodes(graph.nodes).on("tick", ticked);
     simulation.force("link").links(graph.links);
-    //simulation.tick(200);
+    simulation.tick(1);
 
     function ticked() {
       link
