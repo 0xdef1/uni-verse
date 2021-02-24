@@ -152,7 +152,7 @@ export default {
     simulation.force("link").links(graph.links);
 
     simulation.on("end", function() {
-      svg.select('.nodes').style('filter', 'url(#sofGlow)');
+      svg.select('.nodes').attr('filter', 'url(#shadow)');
     })
 
     //simulation.tick(200);
