@@ -8,7 +8,7 @@
       <b>Node Size:</b> Liquidity ($)<br/>
       <b>Node Color:</b> 24hr Volume ($)<br/>
       <b>Links:</b> Frequency of transactions that contain swaps in both pools</p>
-
+      <p>Data as of Feb. 24, 2021</p>
       <p>Credits:<br/>
       <b><a href="https://twitter.com/flipsidecrypto">@flipsidecrypto</a></b> for data<br/>
       <b><a href="https://twitter.com/will__price">@will__price</a></b> for review<br/>
