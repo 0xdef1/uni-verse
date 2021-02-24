@@ -1,7 +1,7 @@
 <template>
   <div class="uni-verse">
     <h1>UNI-verse</h1>
-    <svg width="1000" height="800">
+    <svg width="1000" height="1000">
       <filter id="shadow">
         <feDropShadow
           dx="0"
@@ -79,10 +79,10 @@ export default {
             return d.id;
           })
           .distance((d) => {
-            return Math.log(Math.max(1, 400 - d.cnt));
+            return Math.log(Math.max(1, 600 - d.cnt));
           })
       )
-      .force("charge", d3.forceManyBody().strength(-75))
+      .force("charge", d3.forceManyBody().strength(-200))
       .force(
         "collision",
         d3.forceCollide((d) => {
@@ -91,11 +91,11 @@ export default {
       )
       .force("center", d3.forceCenter(width / 2, height / 2).strength(1));
 
-    // var link = svg.append("g")
-    //   .attr("class", "links")
-    //   .selectAll("line")
-    //   .data(graph.links)
-    //   .enter().append("line")
+    var link = svg.append("g")
+      .attr("class", "links")
+      .selectAll("line")
+      .data(graph.links)
+      .enter().append("line")
 
     var node = svg
       .append("g")
@@ -130,12 +130,15 @@ export default {
     });
 
     simulation.nodes(graph.nodes).on("tick", ticked);
-
     simulation.force("link").links(graph.links);
-
     simulation.tick(200);
 
     function ticked() {
+      link
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y)
       node.attr("transform", function (d) {
         return "translate(" + d.x + "," + d.y + ")";
       });
@@ -157,6 +160,16 @@ svg >>> .nodes {
 
 svg >>> .nodes circle {
   cursor: pointer;
+}
+
+svg >>> .links line {
+  stroke: #fff;
+  stroke-opacity: 0.0075;
+}
+
+svg >>> .nodes circle {
+  stroke: #00000060;
+  stroke-width: 3px;
 }
 
 .tooltip {
