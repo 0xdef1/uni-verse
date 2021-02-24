@@ -1,7 +1,8 @@
 <template>
   <div class="uni-verse">
-    <h1>UNI-verse</h1>
-    <svg width="1000" height="1000">
+    <h1>THE UNI-VERSE</h1>
+    <div style="margin-top: -40px; font-weight: bold;">by <a href="https://twitter.com/0xdef1">@0xdef1</a></div>
+    <svg width="1000" height="1080">
       <filter id="shadow">
         <feDropShadow
           dx="0"
@@ -35,7 +36,9 @@
           </feMerge>
         </filter>
         <line x1="12" y1="17" x2="35" y2="40" />
-        <text x="40" y="55" ref="tooltiplabel"></text>
+        <text x="40" y="55" ref="tooltipname"></text>
+        <text x="40" y="75" ref="tooltipliq"></text>
+        <text x="40" y="95" ref="tooltipvol"></text>
       </svg>
     </div>
   </div>
@@ -54,7 +57,9 @@ export default {
     });
 
     var tip = d3.select(this.$refs.tooltip);
-    var tiplabel = d3.select(this.$refs.tooltiplabel);
+    var tipname = d3.select(this.$refs.tooltipname);
+    var tipliq = d3.select(this.$refs.tooltipliq);
+    var tipvol = d3.select(this.$refs.tooltipvol);
 
     var svg = d3.select("svg"),
       width = +svg.attr("width"),
@@ -65,7 +70,7 @@ export default {
       .scaleSequential(d3.interpolateYlOrRd)
       .domain(
         d3.extent(
-          graph.nodes.map((d) => Math.log(Math.max(100000, d.volumeUSD)))
+          graph.nodes.map((d) => Math.log(Math.max(5000, d.volumeUSD)))
         )
       );
 
@@ -116,7 +121,9 @@ export default {
       .on("mouseover", function (event, d) {
         tip.transition().duration(100).style("opacity", 1);
         tip.style("left", event.pageX + "px").style("top", event.pageY + "px");
-        tiplabel.text(d.id);
+        tipname.text(d.poolName);
+        tipliq.text('liq: ' + abbreviateNumber(d.trackedReserveETH * 1800));
+        tipvol.text('vol: ' + abbreviateNumber(d.volumeUSD));
       })
       .on("mousemove", function (event) {
         tip.style("left", event.pageX + "px").style("top", event.pageY + "px");
@@ -149,11 +156,38 @@ export default {
     function radius(d) {
       return Math.sqrt(d.trackedReserveETH / 200);
     }
+
+    function abbreviateNumber(number){
+      var SI_SYMBOL = ["", "k", "M", "B", "T", "P", "E"];
+      
+      let negative = number < 0 ? '-' : '';
+      number = Math.abs(number);
+
+
+      // what tier? (determines SI symbol)
+      const tier = Math.log10(number) / 3 | 0;
+
+      // if zero, we don't need a suffix
+      if (tier <= 0) {
+        return negative + parseFloat(number.toFixed(Math.abs(tier) * 3 + 2)).toString();
+      }
+
+      // get suffix and determine scale
+      const suffix = SI_SYMBOL[tier];
+      const scale = Math.pow(10, tier * 3);
+
+      // scale the number
+      const scaled = number / scale;
+
+      // format number and add suffix
+      return negative + scaled.toFixed(1) + suffix;
+    }
   },
 };
 </script>
 
 <style scoped>
+
 svg >>> .nodes {
   filter: url(#shadow);
 }
@@ -178,10 +212,10 @@ svg >>> .nodes circle {
   width: 100px;
   height: 100px;
   padding: 2px;
-  font: 12px sans-serif;
   pointer-events: none;
   opacity: 0;
   filter: url(#sofGlow);
+  font-size: 20px;
 }
 
 .tooltip line {
@@ -193,6 +227,5 @@ svg >>> .nodes circle {
 .tooltip text {
   fill: #fff;
   opacity: 0.6;
-  font-family: sans-serif;
 }
 </style>

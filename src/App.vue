@@ -5,28 +5,30 @@
 </template>
 
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 body {
     background: #1f2227;
+    font-family: 'VT323', monospace;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'VT323', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #566c83;
+  font-size: 20px;
 }
 
-#nav {
-  padding: 30px;
+a {
+  color: #566c83;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+
+h1 {
+  font-size: 72px;
 }
 </style>
