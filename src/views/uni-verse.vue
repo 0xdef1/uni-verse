@@ -151,11 +151,11 @@ export default {
     simulation.nodes(graph.nodes).on("tick", ticked);
     simulation.force("link").links(graph.links);
 
-    // simulation.on("end", function() {
-    //   svg.select('.nodes').style('filter', 'url(#shadow)');
-    // })
+    simulation.on("end", function() {
+      svg.select('.nodes').style('filter', 'url(#shadow)');
+    })
 
-    simulation.tick(200);
+    //simulation.tick(200);
 
     function ticked() {
       link
@@ -167,8 +167,8 @@ export default {
         return "translate(" + d.x + "," + d.y + ")";
       });
 
-      svg.select('.nodes').style('filter', 'url(#shadow)');
-      simulation.stop();
+      //svg.select('.nodes').style('filter', 'url(#shadow)');
+      //simulation.stop();
     }
 
     function radius(d) {
