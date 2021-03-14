@@ -9,7 +9,7 @@
             pays off any debt you have, automatically.</p>
             <p>The above description is the core mechanism of <a href="https://alchemix.fi">Alchemix</a>, 
             a new DeFi/lending protocol built on Ethereum. It combines aspects of MakerDAO, Yearn, Curve, and Sushi in a novel 
-            way to create these "self-paying" loans.</p>
+            way to create these "self-paying" loans. </p>
     </div>
     </div>
     <div class="container">
