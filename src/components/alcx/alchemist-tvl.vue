@@ -2,7 +2,7 @@
     <div class="backdrop">
         <div v-if="loading" class="loader"><Loading/></div>
         <div :style="{display: loading ? 'none' : 'block'}">
-            <div class="title">Alchemist TVL</div>
+            <div class="title">Alchemist Deposits</div>
             <div ref="chart"></div>
         </div>
         <Tooltip ref="tooltip"/>
@@ -87,7 +87,7 @@ function drawChart(el, tooltip, data) {
         .attr("y", 5)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("TVL");
+        .text("Total Deposits");
 
     // Add the line
     svg.append("path")
@@ -154,9 +154,6 @@ function drawChart(el, tooltip, data) {
             .html(`${d3.timeFormat("%Y-%m-%d %I:00%p")(date)}<br/>TVL: ${abbreviateNumber(tvl)}`)
             .attr('fill', '#ffffff')
     }
-
-
-
 }
 
 

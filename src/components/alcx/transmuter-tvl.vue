@@ -2,7 +2,7 @@
     <div class="backdrop">
         <div v-if="loading" class="loader"><Loading/></div>
         <div :style="{display: loading ? 'none' : 'block'}">
-            <div class="title">Transmuter TVL</div>
+            <div class="title">Transmuter Balance</div>
             <div ref="chart"></div>
         </div>
         <Tooltip ref="tooltip"/>
@@ -87,7 +87,7 @@ function drawChart(el, tooltip, data) {
         .attr("y", 5)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("TVL");
+        .text("DAI Balance");
 
     // Add the line
     svg.append("path")

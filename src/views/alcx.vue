@@ -50,7 +50,7 @@
     </div>
     <div class="container">
         <div class="explainer">
-            <p>The <a href="https://etherscan.io/address/0xaB7A49B971AFdc7Ee26255038C82b4006D122086" target="_blank">Transmuter</a> completes the life cycle of alUSD. It backstops the peg by gauranteeing that all outstanding alUSD 
+            <p>The <a href="https://etherscan.io/address/0xaB7A49B971AFdc7Ee26255038C82b4006D122086" target="_blank">Transmuter</a> completes the life cycle of alUSD. It backstops the peg by guaranteeing that all outstanding alUSD 
             can be converted 1:1 to DAI. </p> 
             <p>When alUSD is staked in the transmuter, it is converted to DAI over time via the proceeds from loan repayments. When DAI is 
             evenutally claimed, the staked alUSD is burned.
@@ -109,6 +109,10 @@ export default {
 </script>
 
 <style scoped>
+p {
+    font-size: 25px;
+}
+
 .alcx {
     color: #ffffffa0;
 }
@@ -139,7 +143,7 @@ h2 {
 }
 
 .explainer {
-  width: 350px;
+  width: 400px;
   text-align: left;
   margin-right: 20px;
   margin-top: 20px;
@@ -200,7 +204,7 @@ pre {
 
 .axis text {
     font-family: 'Ubuntu Mono';
-    font-size: 13px;
+    font-size: 14px;
     font-weight: bold;
 }
 
