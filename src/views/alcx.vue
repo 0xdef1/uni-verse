@@ -10,7 +10,7 @@
             pays off any debt you have, automatically.</p>
             <p><a href="https://alchemix.fi" target="_blank">Alchemix</a> is 
             a new kind of DeFi/lending protocol built on Ethereum. It combines aspects of MakerDAO, Yearn, Curve, and Sushi in a novel 
-            way to create "self-paying" loans. </p>
+            way to create "self-paying" loans.</p>
             <p><a href="#resources">Resources &amp; Links →</a></p>
     </div>
     </div>
@@ -19,7 +19,7 @@
             <p><a href="https://etherscan.io/token/0xdbdb4d16eda451d0503b854cf79d55697f90c8df" target="_blank">ALCX</a> is the governance token for the Alchemix protocol. Its supply increases when users claim new tokens they've earned by 
             staking liquidity in various pools. </p>
             <p>The total supply will continue to increase over time, in line with the <a href="https://alchemix-finance.gitbook.io/alchemix-finance/token-distribution/alcx-monetary-policy" target="_blank">emissions schedule</a>.</p>
-            <p><a href="https://velocity-app.flipsidecrypto.com/shareable/alcx-supply-npeLZi" target="_blank">Source →</a></p>
+            <p><a href="https://velocity-app.flipsidecrypto.com/shareable/alcx-supply-npeLZi" target="_blank">Source Data →</a></p>
         </div>
         <div class="chart">
                 <ALCXSupply/>
@@ -31,7 +31,7 @@
             It can be traded for other stable coins using a dedicated stable swap pool on <a href="https:/crv.finance" target="_blank">crv.finance</a>, 
             or "transmuted" to DAI over time using the <a href="https://app.alchemix.fi/transmute" target="_blank">Alchemix transmuter</a>.</p>
             <p>It can also be staked to earn ALCX tokens in the <a href="https://app.alchemix.fi/farms" target="_blank">alUSD pool</a>.</p>
-            <p><a href="https://velocity-app.flipsidecrypto.com/shareable/al-usd-supply-6PapN6" target="_blank">Source →</a></p>
+            <p><a href="https://velocity-app.flipsidecrypto.com/shareable/al-usd-supply-6PapN6" target="_blank">Source Data →</a></p>
         </div>
         <div class="chart">
                 <alUSDSupply/>
@@ -42,7 +42,7 @@
             <p>The <a href="https://etherscan.io/address/0xc21D353FF4ee73C572425697f4F5aaD2109fe35b" target="_blank">Alchemist</a> is the primary way users interact with Alchemix.
             This smart contract accepts DAI deposits from users and issues debt in alUSD. It also allows users to repay their outstanding loans, either with alUSD, DAI, or their existing collateral.</p>
             <p>Deposited DAI is put to work earning interest in the <a href="https://yearn.finance/vaults" target="_blank">Yearn v2 DAI vault</a>.
-            <p><a href="https://velocity-app.flipsidecrypto.com/shareable/alchemix-alchemist-tvl-p4NZME" target="_blank">Source →</a></p>
+            <p><a href="https://velocity-app.flipsidecrypto.com/shareable/alchemix-alchemist-tvl-p4NZME" target="_blank">Source Data →</a></p>
         </div>
         <div class="chart">
                 <AlchemistTVL/>
@@ -55,7 +55,7 @@
             <p>When alUSD is staked in the transmuter, it is converted to DAI over time via the proceeds from loan repayments. When DAI is 
             evenutally claimed, the staked alUSD is burned.
             </p>
-            <p><a href="https://velocity-app.flipsidecrypto.com/shareable/alchemix-transmuter-tvl-hlVJVi" target="_blank">Source →</a></p>
+            <p><a href="https://velocity-app.flipsidecrypto.com/shareable/alchemix-transmuter-tvl-hlVJVi" target="_blank">Source Data →</a></p>
         </div>
         <div class="chart">
                 <TransmuterTVL/>
@@ -71,6 +71,7 @@
                 Farming APY &amp; Yield Information: <a href="https://vfat.tools/alcx" target="_blank">vfat.tools →</a><br/>
                 Emissions Schedule: <a href="https://alchemix-finance.gitbook.io/alchemix-finance/token-distribution/alcx-monetary-policy" target="blank">Gitbook →</a><br/>
             </p>
+            <p>Data above from <a href="https://flipsidecrypto.com" target="_blank">Flipside Crypto →</a></p>
             <p>
                 ALCX: <a href="https://etherscan.io/address/0xdBdb4d16EdA451D0503b854CF79D55697F90c8DF" target="_blank">0xdBdb4d16EdA451D0503b854CF79D55697F90c8DF →</a><br/>
                 AlUSD: <a href="https://etherscan.io/address/0xBC6DA0FE9aD5f3b0d58160288917AA56653660E9" target="_blank">0xBC6DA0FE9aD5f3b0d58160288917AA56653660E9 →</a><br/>
@@ -137,7 +138,7 @@ h2 {
 
 .intro {
     text-align: left;
-    width: 720px;
+    width: 760px;
     padding-left: 40px;
     padding-right: 40px;
 }
