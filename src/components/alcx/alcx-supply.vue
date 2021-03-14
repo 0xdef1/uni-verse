@@ -5,7 +5,38 @@
             <div class="title">ALCX Supply</div>
             <div ref="chart"></div>
         </div>
+    <div ref="tooltip" class="tooltip">
+        <svg width="40" height="40">
+             <line x1="12" y1="17" x2="35" y2="40" />
+        </svg>
+        <div style="margin-left: 40px;"></div>
+        <svg width="0" height="0">
+        <filter id="sofGlow" height="300%" width="300%" x="-75%" y="-75%">
+          <feMorphology
+            operator="dilate"
+            radius="10"
+            in="SourceAlpha"
+            result="thicken"
+          />
+          <feGaussianBlur in="thicken" stdDeviation="10" result="blurred" />
+          <feFlood flood-color="rgb(0,0,0)" result="glowColor" />
+          <feComposite
+            in="glowColor"
+            in2="blurred"
+            operator="in"
+            result="softGlow_colored"
+          />
+          <feMerge>
+            <feMergeNode in="softGlow_colored" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+      </svg>
     </div>
+
+    </div>
+    
 </template>
 
 <script>
@@ -34,7 +65,7 @@ export default {
        this.loading = false;
        console.log(results[0]);
        console.log(d3.extent(results[0].map(d => d.date)));
-       drawChart(this.$refs['chart'], results[0])
+       drawChart(this.$refs['chart'], this.$refs['tooltip'], results[0])
     })
   },
 }
@@ -48,10 +79,10 @@ async function fetchData() {
      return _.sortBy(response.data.map(d => ({date: d3.isoParse(d.t), supply: d.alcx})), 'date')
 }
 
-function drawChart(el, data) {
+function drawChart(el, tooltip, data) {
     var margin = {top: 10, right: 30, bottom: 40, left: 60},
         width = 460 - margin.left - margin.right,
-        height = 320 - margin.top - margin.bottom;
+        height = 300 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select(el)
@@ -60,7 +91,8 @@ function drawChart(el, data) {
         .attr("height", height + margin.top + margin.bottom)
     .append("g")
         .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");      
+            "translate(" + margin.left + "," + margin.top + ")")
+        .style("cursor", "crosshair");      
 
     // Add X axis --> it is a date format
     var x = d3.scaleTime()
@@ -97,6 +129,66 @@ function drawChart(el, data) {
                 .x(d => x(d.date))
                 .y(d => y(d.supply))
                 )
+
+    var tip = d3.select(tooltip);
+
+    svg
+        .append('rect')
+        .style("fill", "none")
+        .style("pointer-events", "all")
+        .attr('width', width)
+        .attr('height', height)
+        .on('mouseover', mouseover)
+        .on('mousemove', mousemove)
+        .on('mouseout', mouseout);
+    
+    var bisect = d3.bisector(d => d.date).right;
+
+    var focus = svg
+        .append('g')
+        .append('path')
+        .style("stroke", "#fff")
+        .style("stroke-width", "0.5px")
+        .style("stroke-dasharray", "5,5")
+        .style("opacity", 0)
+        .style("pointer-events", "none")
+
+    function mouseover() {
+        tip.transition().duration(100).style("opacity", 1);
+        focus.transition().duration(100).style("opacity", 1);
+    }
+
+    function mouseout() {
+        tip.transition().duration(100).style("opacity", 0);
+        focus.transition().duration(100).style("opacity", 0);
+    }
+
+    function mousemove(event) {
+
+        var pointerX = d3.pointer(event)[0]
+        var x0 = x.invert(pointerX);
+        var i = bisect(data, x0);
+        var supply = data[i-1].supply;
+        var date = data[i-1].date;
+
+        focus
+            .attr("d", function () {
+                var d = "M" + pointerX + "," + 0;
+                d += " " + pointerX + "," + height;
+                // d += "M" + 0 + "," + y(supply);
+                // d += " " + width + "," + y(supply);
+                return d;
+            })
+
+        tip.style("left", event.pageX + "px").style("top", event.pageY + "px");
+        tip
+            .selectAll('div')
+            .html(`${d3.timeFormat("%Y-%m-%d %I:00%p")(date)}<br/>Circulating Supply: ${abbreviateNumber(supply)}`)
+            .attr('fill', '#ffffff')
+    }
+
+
+
 }
 
 

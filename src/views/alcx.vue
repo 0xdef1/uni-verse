@@ -104,7 +104,7 @@ h1 {
 }
 
 .title {
-  font-size: 30px;
+  font-size: 48px;
   font-weight: bold;
   margin-left: 50px;
   margin-top: 10px;
@@ -145,5 +145,27 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 2px;
+  pointer-events: none;
+  opacity: 0;
+  filter: url(#sofGlow);
+  font-size: 20px;
+  text-align: left;
+}
+
+.tooltip line {
+  stroke-width: 1.5px;
+  stroke: #fff;
+  stroke-opacity: 0.6;
+}
+
+.tooltip text {
+  fill: #fff;
+  opacity: 0.6;
 }
 </style>
