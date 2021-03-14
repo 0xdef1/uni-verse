@@ -211,6 +211,7 @@ a:hover {
     font-family: 'Ubuntu Mono';
     font-size: 13px;
     font-weight: bold;
+    fill: #ffffffa0;
 }
 
 </style>
