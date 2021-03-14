@@ -1,5 +1,5 @@
 {
-  "name": "uni-verse",
+  "name": "dyor.fi",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,8 +8,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "d3": "^6.5.0",
+    "d3": "^6.6.0",
+    "d3-time-format": "^3.0.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
   },
