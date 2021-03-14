@@ -5,12 +5,15 @@
             <div class="title">alUSD Supply</div>
             <div ref="chart"></div>
         </div>
+        <Tooltip ref="tooltip"/>
     </div>
+    
 </template>
 
 <script>
 
 import Loading from '@/components/loading.vue';
+import Tooltip from '@/components/tooltip.vue';
 import axios from 'axios';
 import _ from 'lodash';
 var d3 = require('d3');
@@ -24,7 +27,8 @@ export default {
       }
   },
   components: {
-      Loading
+      Loading,
+      Tooltip
   },
   mounted() {
     Promise.all([
@@ -34,7 +38,7 @@ export default {
        this.loading = false;
        console.log(results[0]);
        console.log(d3.extent(results[0].map(d => d.date)));
-       drawChart(this.$refs['chart'], results[0])
+       drawChart(this.$refs['chart'], this.$refs['tooltip'].$el, results[0])
     })
   },
 }
@@ -48,7 +52,7 @@ async function fetchData() {
      return _.sortBy(response.data.map(d => ({date: d3.isoParse(d.t), supply: d.alusd})), 'date')
 }
 
-function drawChart(el, data) {
+function drawChart(el, tooltip, data) {
     var margin = {top: 10, right: 30, bottom: 40, left: 60},
         width = 460 - margin.left - margin.right,
         height = 300 - margin.top - margin.bottom;
@@ -96,6 +100,61 @@ function drawChart(el, data) {
                 .x(d => x(d.date))
                 .y(d => y(d.supply))
                 )
+    
+    var tip = d3.select(tooltip);
+
+    svg
+        .append('rect')
+        .style("fill", "none")
+        .style("pointer-events", "all")
+        .attr('width', width)
+        .attr('height', height)
+        .on('mouseover', mouseover)
+        .on('mousemove', mousemove)
+        .on('mouseout', mouseout);
+    
+    var bisect = d3.bisector(d => d.date).right;
+
+    var focus = svg
+        .append('g')
+        .append('path')
+        .style("stroke", "#fff")
+        .style("stroke-width", "0.5px")
+        .style("stroke-dasharray", "5,5")
+        .style("opacity", 0)
+        .style("pointer-events", "none")
+
+    function mouseover() {
+        tip.transition().duration(100).style("opacity", 1);
+        focus.transition().duration(100).style("opacity", 1);
+    }
+
+    function mouseout() {
+        tip.transition().duration(100).style("opacity", 0);
+        focus.transition().duration(100).style("opacity", 0);
+    }
+
+    function mousemove(event) {
+
+        var pointerX = d3.pointer(event)[0]
+        var x0 = x.invert(pointerX);
+        var i = bisect(data, x0);
+        var supply = data[i-1].supply;
+        var date = data[i-1].date;
+
+        focus
+            .attr("d", function () {
+                var d = "M" + pointerX + "," + 0;
+                d += " " + pointerX + "," + height;
+                return d;
+            })
+
+        tip.style("left", event.pageX + "px").style("top", event.pageY + "px");
+        tip
+            .selectAll('div')
+            .html(`${d3.timeFormat("%Y-%m-%d %I:00%p")(date)}<br/>Circulating Supply: ${abbreviateNumber(supply)}`)
+            .attr('fill', '#ffffff')
+    }
 }
 
 

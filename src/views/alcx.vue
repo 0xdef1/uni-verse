@@ -87,13 +87,33 @@ h1 {
     width: 500px;
     text-align: left;
 }
+
+.chart >>> svg {
+    cursor: crosshair;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+
+.backdrop {
+    background: #1f2227; 
+    box-shadow: 0px 0px 50px #00000080; 
+    padding-top: 10px;
+    display: inline-block;
+    margin: 20px;
+}
+
 </style>
 
 <style>
-.legend {
-    padding-left: 50px; 
-    width: 410px;
-}
 
 .loader {
     display: flex;
@@ -112,60 +132,10 @@ h1 {
   color: #566c83;
 }
 
-.subhead {
-  font-size: 12px;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 50px;
-}
-
-.backdrop {
-    background: #1f2227; 
-    box-shadow: 0px 0px 50px #00000080; 
-    padding-top: 10px;
-    display: inline-block;
-    margin: 20px;
-}
-
 .axis text {
     font-family: 'Ubuntu Mono';
     font-size: 13px;
     font-weight: bold;
 }
 
-a {
-    font-weight: bold;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.tooltip {
-  position: absolute;
-  text-align: center;
-  padding: 2px;
-  pointer-events: none;
-  opacity: 0;
-  filter: url(#sofGlow);
-  font-size: 20px;
-  text-align: left;
-}
-
-.tooltip line {
-  stroke-width: 1.5px;
-  stroke: #fff;
-  stroke-opacity: 0.6;
-}
-
-.tooltip text {
-  fill: #fff;
-  opacity: 0.6;
-}
 </style>

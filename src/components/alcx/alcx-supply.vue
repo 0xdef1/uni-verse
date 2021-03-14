@@ -5,36 +5,7 @@
             <div class="title">ALCX Supply</div>
             <div ref="chart"></div>
         </div>
-    <div ref="tooltip" class="tooltip">
-        <svg width="40" height="40">
-             <line x1="12" y1="17" x2="35" y2="40" />
-        </svg>
-        <div style="margin-left: 40px;"></div>
-        <svg width="0" height="0">
-        <filter id="sofGlow" height="300%" width="300%" x="-75%" y="-75%">
-          <feMorphology
-            operator="dilate"
-            radius="10"
-            in="SourceAlpha"
-            result="thicken"
-          />
-          <feGaussianBlur in="thicken" stdDeviation="10" result="blurred" />
-          <feFlood flood-color="rgb(0,0,0)" result="glowColor" />
-          <feComposite
-            in="glowColor"
-            in2="blurred"
-            operator="in"
-            result="softGlow_colored"
-          />
-          <feMerge>
-            <feMergeNode in="softGlow_colored" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-
-      </svg>
-    </div>
-
+        <Tooltip ref="tooltip"/>
     </div>
     
 </template>
@@ -42,6 +13,7 @@
 <script>
 
 import Loading from '@/components/loading.vue';
+import Tooltip from '@/components/tooltip.vue';
 import axios from 'axios';
 import _ from 'lodash';
 var d3 = require('d3');
@@ -55,7 +27,8 @@ export default {
       }
   },
   components: {
-      Loading
+      Loading,
+      Tooltip
   },
   mounted() {
     Promise.all([
@@ -63,9 +36,8 @@ export default {
     ])
     .then((results) => {
        this.loading = false;
-       console.log(results[0]);
-       console.log(d3.extent(results[0].map(d => d.date)));
-       drawChart(this.$refs['chart'], this.$refs['tooltip'], results[0])
+       console.log(this.$refs['tooltip']);
+       drawChart(this.$refs['chart'], this.$refs['tooltip'].$el, results[0])
     })
   },
 }
@@ -91,8 +63,7 @@ function drawChart(el, tooltip, data) {
         .attr("height", height + margin.top + margin.bottom)
     .append("g")
         .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")")
-        .style("cursor", "crosshair");      
+            "translate(" + margin.left + "," + margin.top + ")")  
 
     // Add X axis --> it is a date format
     var x = d3.scaleTime()
@@ -175,8 +146,6 @@ function drawChart(el, tooltip, data) {
             .attr("d", function () {
                 var d = "M" + pointerX + "," + 0;
                 d += " " + pointerX + "," + height;
-                // d += "M" + 0 + "," + y(supply);
-                // d += " " + width + "," + y(supply);
                 return d;
             })
 
