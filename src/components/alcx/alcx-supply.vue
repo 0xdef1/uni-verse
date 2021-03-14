@@ -54,7 +54,7 @@ async function fetchData() {
 function drawChart(el, tooltip, data) {
     var margin = {top: 10, right: 30, bottom: 40, left: 60},
         width = 460 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
+        height = 350 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select(el)
