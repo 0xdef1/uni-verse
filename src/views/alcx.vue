@@ -201,7 +201,7 @@ a:hover {
 .title {
   font-size: 48px;
   font-weight: bold;
-  margin-left: 50px;
+  margin-left: 60px;
   margin-top: 10px;
   margin-bottom: 10px;
   color: #566c83;
