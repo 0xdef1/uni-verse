@@ -152,6 +152,8 @@ function drawChart(el, tooltip, data) {
             .attr("d", function () {
                 var d = "M" + pointerX + "," + 0;
                 d += " " + pointerX + "," + height;
+                d += "M" + 0 + "," + y(tvl);
+                d += " " + width + "," + y(tvl);
                 return d;
             })
 
