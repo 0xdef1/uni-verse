@@ -1812,6 +1812,13 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
+axios@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
+
 babel-eslint@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-10.1.0.tgz#6968e568a910b78fb3779cdd8b6ac2f479943232"
@@ -3114,7 +3121,7 @@ d3-shape@2:
   dependencies:
     d3-path "1 - 2"
 
-"d3-time-format@2 - 3", d3-time-format@3:
+"d3-time-format@2 - 3", d3-time-format@3, d3-time-format@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/d3-time-format/-/d3-time-format-3.0.0.tgz#df8056c83659e01f20ac5da5fdeae7c08d5f1bb6"
   integrity sha512-UXJh6EKsHBTjopVqZBhFysQcoXSv/5yLONZvkQ5Kk3qbwiUYkdX17Xa1PT6U1ZWXGGfB1ey5L8dKMlFq2DO0Ag==
@@ -3153,10 +3160,10 @@ d3-zoom@2:
     d3-selection "2"
     d3-transition "2"
 
-d3@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/d3/-/d3-6.5.0.tgz#55cc64690cfe7bf18788d2cfbe22d911b01309f0"
-  integrity sha512-gr7FoRecKtBkBxelTeGVYERRTPgjPFLh2rOBisHdbXe3RIrVLjCo7COZYMSeFeiwVPOHDtxAGJlvN7XssNAIcg==
+d3@^6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-6.6.0.tgz#0722c03b0ad5a479b54080c00e5daa6b809a83c7"
+  integrity sha512-fWyMfZDSOLksXeYuiHM/uHap7pKgypUnOGY8jiTfmmAWH1HM6ErPtnHiKEdqs7DtZqbombUgaKwq3B5Pjm7GOQ==
   dependencies:
     d3-array "2"
     d3-axis "2"
@@ -4135,6 +4142,11 @@ follow-redirects@^1.0.0:
   version "1.13.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.2.tgz#dd73c8effc12728ba5cf4259d760ea5fb83e3147"
   integrity sha512-6mPTgLxYm3r6Bkkg0vNM0HTjfGrOEtsfbhagQvbxDEsEkpNhw582upBaoRZylzen6krEmxXJgt9Ju6HiI4O7BA==
+
+follow-redirects@^1.10.0:
+  version "1.13.3"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.3.tgz#e5598ad50174c1bc4e872301e82ac2cd97f90267"
+  integrity sha512-DUgl6+HDzB0iEptNQEXLx/KhTmDb8tZUHSeLqpnjpknR70H0nC2t9N73BK6fN4hOvJ84pKlIQVQ4k5FFlBedKA==
 
 for-in@^1.0.2:
   version "1.0.2"
