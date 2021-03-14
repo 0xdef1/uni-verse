@@ -48,7 +48,7 @@ async function fetchData() {
         url: api,
         method: "get",
      });
-     return _.sortBy(response.data.map(d => ({date: d3.isoParse(d.t), supply: d.alcx})), 'date')
+     return _.sortBy(response.data.map(d => ({date: d3.isoParse(d.T), supply: d.ALCX})), 'date')
 }
 
 function drawChart(el, tooltip, data) {
