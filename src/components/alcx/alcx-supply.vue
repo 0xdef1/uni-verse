@@ -18,6 +18,7 @@ import axios from 'axios';
 import _ from 'lodash';
 var d3 = require('d3');
 import abbreviateNumber from '@/data/abbreviate-number.js'
+import sleep from '@/data/sleep.js'
 
 export default {
   name: 'ALCXSupply',
@@ -32,7 +33,8 @@ export default {
   },
   mounted() {
     Promise.all([
-      fetchData()
+      fetchData(),
+      sleep(750)
     ])
     .then((results) => {
        this.loading = false;
