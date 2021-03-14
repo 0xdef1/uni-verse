@@ -2,7 +2,7 @@
   <div class="alcx">
     <h1>DYOR: Alchemix</h1>
     <h2>by <a href="https://twitter.com/0xdef1">0xdef1</a></h2>
-    <div class="container">
+    <div class="container" style="margin-bottom: 0px">
         <div class="intro">
             <p>Imagine a bank. You can deposit money, and the bank pays you 10-15% interest. There's a credit card
             attached to the account, with a credit limit of 50% of the amount you have deposited. There's no interest
@@ -12,7 +12,7 @@
             a new kind of DeFi/lending protocol built on Ethereum. It combines aspects of MakerDAO, Yearn, Curve, and Sushi in a novel 
             way to create "self-paying" loans.</p>
             <p style="font-size: 25px;"><a href="#resources">Resources &amp; Links →</a></p>
-    </div>
+        </div>
     </div>
     <div class="container">
         <div class="explainer">
@@ -129,7 +129,8 @@ h2 {
 }
 
 .container {
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 70px;
   display: flex;
   flex-direction: row;
   justify-content: center;
