@@ -209,7 +209,7 @@ a:hover {
 
 .axis text {
     font-family: 'Ubuntu Mono';
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
 }
 
