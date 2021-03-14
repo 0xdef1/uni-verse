@@ -99,6 +99,13 @@ function drawChart(el, tooltip, data) {
                 .x(d => x(d.date))
                 .y(d => y(d.tvl))
                 )
+    svg.append("path")
+        .datum(data)
+        .attr("fill", "#e615b180")
+        .attr("d", d3.area().curve(d3.curveStepAfter)
+            .x(d => x(d.date))
+            .y0(() => y(0))
+            .y1(d => y(d.tvl)))
 
     var tip = d3.select(tooltip);
 
