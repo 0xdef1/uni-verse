@@ -55,6 +55,7 @@
             <p>To bootstrap liquidity for alUSD, Alchemix launched with incentivized staking pools, where users can deposit capital and earn
                 ALCX tokens as a reward. APY information and reward allocation can be found at <a href="https://vfat.tools/alcx" target="_blank">vfat.tools</a>.
             </p>
+            <p>Note: This chart may lag real time by a few hours.</p>
             <p class="source"><a href="https://velocity-app.flipsidecrypto.com/shareable/aldai-pool-cIN5fS" target="_blank">Source Data →</a></p>
         </div>
         <div class="chart">
