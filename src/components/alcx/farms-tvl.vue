@@ -152,11 +152,15 @@ function drawChart(el, tooltip, data) {
         var pointerX = d3.pointer(event)[0]
         var x0 = x.invert(pointerX);
         var i = bisect(data, x0);
-        var alusd = data[i-1].alusd;
-        var al3usd = data[i-1].al3usd;
-        var alcx = data[i-1].alcx;
-        var slp = data[i-1].slp;
-        var date = data[i-1].date;
+
+        // Catch edge case
+        if (i >= data.length) i  = data.length;
+
+        var alusd = data[i].alusd;
+        var al3usd = data[i].al3usd;
+        var alcx = data[i].alcx;
+        var slp = data[i].slp;
+        var date = data[i].date;
 
         focus
             .attr("d", function () {
