@@ -16,17 +16,6 @@
     </div>
     <div class="container">
         <div class="explainer">
-            <p><a href="https://etherscan.io/token/0xdbdb4d16eda451d0503b854cf79d55697f90c8df" target="_blank">ALCX</a> is the governance token for the Alchemix protocol. Its supply increases when users claim new tokens they've earned by 
-            staking liquidity in various pools. </p>
-            <p>The total supply will continue to increase over time, in line with the <a href="https://alchemix-finance.gitbook.io/alchemix-finance/token-distribution/alcx-monetary-policy" target="_blank">emissions schedule</a>.</p>
-            <p class="source"><a href="https://velocity-app.flipsidecrypto.com/shareable/alcx-supply-npeLZi" target="_blank">Source Data →</a></p>
-        </div>
-        <div class="chart">
-                <ALCXSupply/>
-        </div>
-    </div>
-    <div class="container">
-        <div class="explainer">
             <p><a href="https://etherscan.io/token/0xbc6da0fe9ad5f3b0d58160288917aa56653660e9" target="_blank">alUSD</a> is a stablecoin that is minted when users take out a loan using Alchemix.
             It can be traded for other stable coins using a dedicated stable swap pool on <a href="https:/crv.finance" target="_blank">crv.finance</a>, 
             or "transmuted" to DAI over time using the <a href="https://app.alchemix.fi/transmute" target="_blank">Alchemix transmuter</a>.</p>
@@ -59,6 +48,28 @@
         </div>
         <div class="chart">
                 <TransmuterTVL/>
+        </div>
+    </div>
+    <div class="container">
+        <div class="explainer">
+            <p>To bootstrap liquidity for alUSD, Alchemix launched with incentivized staking pools, where users can deposit capital and earn
+                ALCX tokens as a reward. APY information and reward allocation can be found at <a href="https://vfat.tools/alcx" target="_blank">vfat.tools</a>.
+            </p>
+            <p class="source"><a href="https://velocity-app.flipsidecrypto.com/shareable/aldai-pool-cIN5fS" target="_blank">Source Data →</a></p>
+        </div>
+        <div class="chart">
+                <FarmsTVL/>
+        </div>
+    </div>
+    <div class="container">
+        <div class="explainer">
+            <p><a href="https://etherscan.io/token/0xdbdb4d16eda451d0503b854cf79d55697f90c8df" target="_blank">ALCX</a> is the governance token for the Alchemix protocol. Its supply increases when users claim new tokens they've earned by 
+            staking liquidity in the various pools above.</p>
+            <p>The total supply will continue to increase over time, in line with the <a href="https://alchemix-finance.gitbook.io/alchemix-finance/token-distribution/alcx-monetary-policy" target="_blank">emissions schedule</a>.</p>
+            <p class="source"><a href="https://velocity-app.flipsidecrypto.com/shareable/alcx-supply-npeLZi" target="_blank">Source Data →</a></p>
+        </div>
+        <div class="chart">
+                <ALCXSupply/>
         </div>
     </div>
     <p><a name="resources"></a></p>
@@ -96,6 +107,7 @@ import ALCXSupply from '@/components/alcx/alcx-supply.vue'
 import alUSDSupply from '@/components/alcx/alusd-supply.vue'
 import AlchemistTVL from '@/components/alcx/alchemist-tvl.vue'
 import TransmuterTVL from '@/components/alcx/transmuter-tvl.vue'
+import FarmsTVL from '@/components/alcx/farms-tvl.vue'
 
 
 export default {
@@ -104,7 +116,8 @@ export default {
     ALCXSupply,
     alUSDSupply,
     AlchemistTVL,
-    TransmuterTVL
+    TransmuterTVL,
+    FarmsTVL
   }
 }
 </script>
