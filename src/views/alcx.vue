@@ -139,7 +139,7 @@ h2 {
 
 .intro {
     text-align: left;
-    width: 720px;
+    width: 600px;
     padding-left: 40px;
     padding-right: 40px;
 }
