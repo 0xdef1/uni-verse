@@ -72,7 +72,7 @@ function drawChart(el, tooltip, data) {
         .keys(pools)(data)
     var color = d3.scaleOrdinal()
         .domain(pools)
-        .range(['#E615B180','#083D7780','#6C91BF80','#C315E680']);
+        .range(['#E615B1','#083D77','#6C91BF','#C315E6']);
 
     // Add X axis --> it is a date format
     var x = d3.scaleTime()
@@ -110,8 +110,21 @@ function drawChart(el, tooltip, data) {
         .data(stackedData)
         .enter()
         .append("path")
-            .style("fill", function(d) { return color(d.key); })
+            .style("fill", d => color(d.key))
+            .style("opacity", 0.5)
             .attr("d", area)
+    
+    svg.selectAll('g.pathHighlight')
+        .data(stackedData)
+        .enter()
+        .append("path")
+        .style("stroke", d => color(d.key))
+        .style("stroke-width", 1.5)
+        .style("fill", "none")
+        .attr("d", d3.line()
+            .x(d => x(d.data.date))
+            .y(d => y(d[1]))
+        )
 
 
     var tip = d3.select(tooltip);
