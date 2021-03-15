@@ -17,6 +17,7 @@
                <a href="https://velocity-app.flipsidecrypto.com/shareable/alcx-supply-npeLZi" target="_blank">ALCX Supply →</a> 
                <a href="https://velocity-app.flipsidecrypto.com/shareable/al-usd-supply-6PapN6" target="_blank">alUSD Supply →</a>
                <a href="https://velocity-app.flipsidecrypto.com/shareable/aldai-pool-cIN5fS" target="_blank">Farm TVL →</a>
+               <a href="https://velocity-app.flipsidecrypto.com/shareable/alchemix-harvests-Mza34X" target="_blank">Harvests →</a>
                 </div>
                 <div>
 
