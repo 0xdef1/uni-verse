@@ -11,7 +11,20 @@
             <p><a href="https://alchemix.fi" target="_blank">Alchemix</a> is 
             a new kind of DeFi/lending protocol built on Ethereum. It combines aspects of MakerDAO, Yearn, Curve, and Sushi in a novel 
             way to create "self-paying" loans.</p>
-            <p style="font-size: 25px;"><a href="#resources">Resources &amp; Links →</a></p>
+            <p>Quick Links:</p>
+            <div class="quicklinks">
+                <div>
+               <a href="https://velocity-app.flipsidecrypto.com/shareable/alcx-supply-npeLZi" target="_blank">ALCX Supply →</a> 
+               <a href="https://velocity-app.flipsidecrypto.com/shareable/al-usd-supply-6PapN6" target="_blank">alUSD Supply →</a>
+               <a href="https://velocity-app.flipsidecrypto.com/shareable/aldai-pool-cIN5fS" target="_blank">Farm TVL →</a>
+                </div>
+                <div>
+
+               <a href="https://velocity-app.flipsidecrypto.com/shareable/alchemix-alchemist-tvl-p4NZME" target="_blank">Deposits →</a>
+               <a href="https://velocity-app.flipsidecrypto.com/shareable/alchemix-transmuter-tvl-hlVJVi" target="_blank">Transmuter Balance →</a>
+               <a href="#resources">Other Resources →</a>
+               </div>
+            </div>
         </div>
     </div>
     <div class="container">
@@ -126,6 +139,25 @@ export default {
 <style scoped>
 p {
     font-size: 25px;
+}
+
+.quicklinks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.quicklinks div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.quicklinks a {
+    display: inline-block;
+    font-size: 16px;
 }
 
 .alcx {
