@@ -150,6 +150,8 @@ function drawChart(el, tooltip, data) {
         .style("opacity", 0)
         .style("pointer-events", "none")
 
+
+
     function mouseover() {
         tip.transition().duration(100).style("opacity", 1);
         focus.transition().duration(100).style("opacity", 1);
@@ -169,10 +171,7 @@ function drawChart(el, tooltip, data) {
         // Catch edge case
         if (i >= data.length) i  = data.length;
 
-        var alusd = data[i].alusd;
-        var al3usd = data[i].al3usd;
-        var alcx = data[i].alcx;
-        var slp = data[i].slp;
+        var poolNames = _.zipObject(pools, ['alUSD/3CRV','WETH/ALCX','ALCX','alUSD']);
         var date = data[i].date;
 
         focus
@@ -182,10 +181,12 @@ function drawChart(el, tooltip, data) {
                 return d;
             })
 
+        var legend = pools.map(p => `<div style="display: inline-block; background: ${color(p)}; width: 10px; height: 10px;"></div> ${poolNames[p]}: ${abbreviateNumber(data[i][p])}<br/>`);
+
         tip.style("left", event.pageX + "px").style("top", event.pageY + "px");
         tip
             .selectAll('div')
-            .html(`${d3.timeFormat("%Y-%m-%d")(date)}<br/>alUSD: ${abbreviateNumber(alusd)}<br/>ALCX: ${abbreviateNumber(alcx)}<br/>ALCX/WETH: ${abbreviateNumber(slp)}<br/>alUSD/3crv: ${abbreviateNumber(al3usd)}<br/>Total: ${abbreviateNumber(alusd+al3usd+alcx+slp)}`)
+            .html(`${d3.utcFormat("%Y-%m-%d")(date)}<br/>Total: ${abbreviateNumber(_.sum(pools.map(p => data[i][p])))}<br/>` + legend.reverse().join(''))
             .attr('fill', '#ffffff')
     }
 
