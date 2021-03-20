@@ -89,7 +89,6 @@ function colorForSize(size) {
     return color(size);
 }
 
-
 async function fetchData() {
     const api = 'https://api.opensea.io/api/v1/events?only_opensea=true&offset=0&limit=10000&asset_contract_address=0x913ae503153d9a335398d0785ba60a2d63ddb4e2&event_type=successful';
     const response = await axios({
