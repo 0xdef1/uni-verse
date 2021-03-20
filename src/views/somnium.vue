@@ -1,9 +1,16 @@
 <template>
     <div class="somnium">
-        <h1>SOMNIUM SPACE VR SALES</h1>
+        <h1>SOMNIUM SPACE VR</h1>
         <div class="container">
             <div class="explainer">
-                <p>Lorem ipsum</p>
+                <ul>
+                    <li v-for="sale in sales" :key="sale.id">
+                        <span style="font-size: 15px">{{sale.dateStr}}</span><br/>
+                        <div :style="{marginRight: '5px', marginLeft: '5px', width: '10px', height: '10px', background: colorForSize(sizeForDescription(sale.description)), display: 'inline-block', 'border-radius': '50%'}"></div>
+                        {{sale.price}} {{sale.paymentToken}}
+                        <a :href="sale.permalink" target="_blank">#{{sale.id}} →</a> 
+                    </li>
+                </ul>
             </div>
             <div class="chart">
                 <div class="backdrop">
@@ -35,7 +42,7 @@
 import Loading from '@/components/loading.vue';
 import Tooltip from '@/components/tooltip.vue';
 import axios from 'axios';
-//import _ from 'lodash';
+import _ from 'lodash';
 var d3 = require('d3');
 import abbreviateNumber from '@/data/abbreviate-number.js'
 import sleep from '@/data/sleep.js'
@@ -45,6 +52,9 @@ export default {
   data() {
       return {
           loading: true,
+          sales: [],
+          colorForSize: colorForSize,
+          sizeForDescription: sizeForDescription
       }
   },
   components: {
@@ -58,11 +68,27 @@ export default {
     ])
     .then((results) => {
        this.loading = false;
-       console.log(this.$refs['tooltip']);
+       this.sales = _.chain(results[0]).take(10).value()
+       console.log(this.sales);
        drawChart(this.$refs['chart'], this.$refs['tooltip'].$el, results[0])
     })
   },
 }
+
+function sizeForDescription(description) {
+    var size = description.startsWith('Small') ? 's' :
+    description.startsWith('Medium') ? 'm' : 
+    description.startsWith('Extra Large') ? 'xl' : '?'
+    return size;
+}
+
+function colorForSize(size) {
+    var color = d3.scaleOrdinal()
+    .domain(['s', 'm', 'xl'])
+    .range(['#C315E6','#6C91BF','#E615B1','#083D77',])
+    return color(size);
+}
+
 
 async function fetchData() {
     const api = 'https://api.opensea.io/api/v1/events?only_opensea=true&offset=0&limit=10000&asset_contract_address=0x913ae503153d9a335398d0785ba60a2d63ddb4e2&event_type=successful';
@@ -75,9 +101,10 @@ async function fetchData() {
              s.asset.asset_contract.address == "0x913ae503153d9a335398d0785ba60a2d63ddb4e2" &&
              (s.payment_token.symbol == "ETH" || s.payment_token.symbol == "WETH"))
         .map(s => ({
-            id: s.asset.id,
+            id: s.asset.token_id,
             description: s.asset.description,
             date: new Date(s.created_date),
+            dateStr: d3.utcFormat( "%Y-%m-%d %H:%M:%S")(new Date(s.created_date)),
             price: parseInt(s.total_price) / Math.pow(10, s.payment_token.decimals),
             paymentToken: s.payment_token.symbol,
             permalink: s.asset.permalink,
@@ -88,9 +115,6 @@ async function fetchData() {
 }
 
 function drawChart(el, tooltip, data) {
-    console.log(el);
-    console.log(tooltip);
-    console.log(data);
 
     var margin = {top: 10, right: 30, bottom: 40, left: 60},
         width = 460 - margin.left - margin.right,
@@ -129,9 +153,7 @@ function drawChart(el, tooltip, data) {
         .style("text-anchor", "end")
         .text("Sale Price (Ξ)");
 
-    var color = d3.scaleOrdinal()
-        .domain(['s', 'm', 'xl'])
-        .range(['#C315E6','#6C91BF','#E615B1','#083D77',])
+    var tip = d3.select(tooltip);
 
     svg.selectAll('.dot')
         .data(data)
@@ -145,12 +167,24 @@ function drawChart(el, tooltip, data) {
             return y(d.price)
         })
         .style("fill", d => {
-            var size = d.description.startsWith('Small') ? 's' :
-                d.description.startsWith('Medium') ? 'm' : 
-                d.description.startsWith('Extra Large') ? 'xl' : '?'
-            return color(size);
+            return colorForSize(sizeForDescription(d.description));
         })
         .style("opacity", "0.5")
+        .on("mouseover", () => {
+            tip.transition().duration(100).style("opacity", 1);
+        })
+        .on("mouseout", () => {
+            tip.transition().duration(100).style("opacity", 0);
+        })
+        .on("mousemove", (event, d) => {
+            tip.style("left", event.pageX + "px").style("top", event.pageY + "px");
+            tip
+                .selectAll('div')
+                .html(`#${d.id}<br/>${d.price} ${d.paymentToken}`)
+                .attr('fill', '#ffffff')
+        })
+
+    
 }
 
 </script>
@@ -161,13 +195,20 @@ function drawChart(el, tooltip, data) {
     color: #ffffffa0;
 }
 
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
 p {
     font-size: 25px;
 }
 
 
 h1 {
-    margin-bottom: 0;
     color: #566c83;
 }
 
