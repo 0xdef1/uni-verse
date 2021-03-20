@@ -30,6 +30,8 @@
                             </div>
                         </div>
                         <div ref="chart"></div>
+                        <div ref="chart2"></div>
+                        <div ref="chart3"></div>
                     </div>
                     <Tooltip ref="tooltip"/>
                 </div>
@@ -71,7 +73,12 @@ export default {
        this.loading = false;
        this.sales = _.chain(results[0]).take(10).value()
        console.log(this.sales);
-       drawChart(this.$refs['chart'], this.$refs['tooltip'].$el, results[0])
+       drawChart(this.$refs['chart'], this.$refs['tooltip'].$el, results[0].filter(s => sizeForDescription(s.description) == 's'))
+
+       drawChart(this.$refs['chart2'], this.$refs['tooltip'].$el, results[0].filter(s => sizeForDescription(s.description) == 'm'))
+
+       drawChart(this.$refs['chart3'], this.$refs['tooltip'].$el, results[0].filter(s => sizeForDescription(s.description) == 'xl'))
+
     })
   },
 }
@@ -118,7 +125,7 @@ function drawChart(el, tooltip, data) {
 
     var margin = {top: 10, right: 30, bottom: 40, left: 60},
         width = 460 - margin.left - margin.right,
-        height = 350 - margin.top - margin.bottom;
+        height = 200 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select(el)
