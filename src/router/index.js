@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/home.vue'
 import UniVerse from '../views/uni-verse.vue'
 import ALCX from '../views/alcx.vue'
+import SomniumSales from '../views/somnium.vue'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,11 @@ const routes = [
     name: 'ALCX',
     component: ALCX
   },
+  {
+    path: '/somnium',
+    name: 'SomniumSales',
+    component: SomniumSales
+  }
   // {
   //   path: '/about',
   //   name: 'About',
