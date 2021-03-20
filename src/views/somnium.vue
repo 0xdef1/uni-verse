@@ -4,6 +4,7 @@
         <div class="container">
             <div class="explainer">
                 <ul>
+                    <li><h2>Recent Sales</h2></li>
                     <li v-for="sale in sales" :key="sale.id">
                         <span style="font-size: 15px">{{sale.dateStr}}</span><br/>
                         <div :style="{marginRight: '5px', marginLeft: '5px', width: '10px', height: '10px', background: colorForSize(sizeForDescription(sale.description)), display: 'inline-block', 'border-radius': '50%'}"></div>
@@ -103,7 +104,7 @@ async function fetchData() {
             id: s.asset.token_id,
             description: s.asset.description,
             date: new Date(s.created_date),
-            dateStr: d3.utcFormat( "%Y-%m-%d %H:%M:%S")(new Date(s.created_date)),
+            dateStr: d3.timeFormat( "%Y-%m-%d %H:%M:%S")(new Date(s.created_date)),
             price: parseInt(s.total_price) / Math.pow(10, s.payment_token.decimals),
             paymentToken: s.payment_token.symbol,
             permalink: s.asset.permalink,
