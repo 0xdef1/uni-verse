@@ -30,18 +30,6 @@
     </div>
     <div class="container">
         <div class="explainer">
-            <p><a href="https://etherscan.io/token/0xbc6da0fe9ad5f3b0d58160288917aa56653660e9" target="_blank">alUSD</a> is a stablecoin that is minted when users take out a loan using Alchemix.
-            It can be traded for other stable coins using a dedicated stable swap pool on <a href="https:/crv.finance" target="_blank">crv.finance</a>, 
-            or "transmuted" to DAI over time using the <a href="https://app.alchemix.fi/transmute" target="_blank">Alchemix transmuter</a>.</p>
-            <p>It can also be staked to earn ALCX tokens in the <a href="https://app.alchemix.fi/farms" target="_blank">alUSD pool</a>.</p>
-            <p class="source"><a href="https://velocity-app.flipsidecrypto.com/shareable/al-usd-supply-6PapN6" target="_blank">Source Data →</a></p>
-        </div>
-        <div class="chart">
-                <alUSDSupply/>
-        </div>
-    </div>
-    <div class="container">
-        <div class="explainer">
             <p>The <a href="https://etherscan.io/address/0xc21D353FF4ee73C572425697f4F5aaD2109fe35b" target="_blank">Alchemist</a> is the primary way users interact with Alchemix.
             This smart contract accepts DAI deposits from users and issues debt in alUSD. It also allows users to repay their outstanding loans, either with alUSD, DAI, or their existing collateral.</p>
             <p>There is <i>no interest</i> on the alUSD loan. There are <i>no liquidations</i>.</p>
@@ -50,6 +38,18 @@
         </div>
         <div class="chart">
                 <AlchemistTVL/>
+        </div>
+    </div>
+        <div class="container">
+        <div class="explainer">
+            <p><a href="https://etherscan.io/token/0xbc6da0fe9ad5f3b0d58160288917aa56653660e9" target="_blank">alUSD</a> is the stablecoin that is minted when users take out a loan using Alchemix.
+            It can be traded for other stable coins using a dedicated stable swap pool on <a href="https:/crv.finance" target="_blank">crv.finance</a>, 
+            or "transmuted" to DAI over time using the <a href="https://app.alchemix.fi/transmute" target="_blank">Alchemix transmuter</a>.</p>
+            <p>It can also be staked to earn ALCX tokens in the <a href="https://app.alchemix.fi/farms" target="_blank">alUSD pool</a>.</p>
+            <p class="source"><a href="https://velocity-app.flipsidecrypto.com/shareable/al-usd-supply-6PapN6" target="_blank">Source Data →</a></p>
+        </div>
+        <div class="chart">
+                <alUSDSupply/>
         </div>
     </div>
     <div class="container">
