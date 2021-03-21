@@ -55,7 +55,7 @@
                 <div class="backdrop">
                     <div v-if="loadingAuctions" class="loader"><Loading/></div>
                     <div :style="{display: loadingAuctions ? 'none' : 'block'}">
-                        <div class="title">Open Auction Prices</div>
+                        <div class="title">List Prices</div>
                         <div ref="auctionsChart"></div>
                         <div ref="auctionsChart2"></div>
                         <div ref="auctionsChart3"></div>
