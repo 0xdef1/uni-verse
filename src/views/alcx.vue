@@ -44,7 +44,8 @@
         <div class="explainer">
             <p>The <a href="https://etherscan.io/address/0xc21D353FF4ee73C572425697f4F5aaD2109fe35b" target="_blank">Alchemist</a> is the primary way users interact with Alchemix.
             This smart contract accepts DAI deposits from users and issues debt in alUSD. It also allows users to repay their outstanding loans, either with alUSD, DAI, or their existing collateral.</p>
-            <p>Deposited DAI is put to work earning interest in the <a href="https://yearn.finance/vaults" target="_blank">Yearn v2 DAI vault</a>.
+            <p>There is <i>no interest</i> on the alUSD loan. There are <i>no liquidations</i>.</p>
+            <p>Deposited DAI is put to work earning yield in the <a href="https://yearn.finance/vaults" target="_blank">Yearn v2 DAI vault</a>. The earned yield pays off your alUSD debt.
             <p class="source"><a href="https://velocity-app.flipsidecrypto.com/shareable/alchemix-alchemist-tvl-p4NZME" target="_blank">Source Data →</a></p>
         </div>
         <div class="chart">
