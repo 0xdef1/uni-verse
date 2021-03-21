@@ -32,8 +32,35 @@
                         <div ref="chart"></div>
                         <div ref="chart2"></div>
                         <div ref="chart3"></div>
+
                     </div>
                     <Tooltip ref="tooltip"/>
+                </div>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="explainer">
+                <ul>
+                    <li><h2>For Sale</h2></li>
+                    <li v-for="auction in auctions" :key="auction.id">
+                        <span style="font-size: 15px">{{auction.dateStr}}</span><br/>
+                        <div :style="{marginRight: '5px', marginLeft: '5px', width: '10px', height: '10px', background: colorForSize(auction.size), display: 'inline-block', 'border-radius': '50%'}"></div>
+                        {{auction.price}} ETH
+                        <a :href="auction.permalink" target="_blank">#{{auction.id}} →</a> 
+                    </li>
+                </ul>
+            </div>
+            <div class="chart">
+                <div class="backdrop">
+                    <div v-if="loadingAuctions" class="loader"><Loading/></div>
+                    <div :style="{display: loadingAuctions ? 'none' : 'block'}">
+                        <div class="title">Open Auction Prices</div>
+                        <div ref="auctionsChart"></div>
+                        <div ref="auctionsChart2"></div>
+                        <div ref="auctionsChart3"></div>
+                    </div>
+                    <Tooltip ref="auctionsTooltip"/>
                 </div>
             </div>
         </div>
@@ -55,7 +82,9 @@ export default {
   data() {
       return {
           loading: true,
+          loadingAuctions: true,
           sales: [],
+          auctions: [],
           colorForSize: colorForSize,
           sizeForDescription: sizeForDescription
       }
@@ -72,13 +101,17 @@ export default {
     .then((results) => {
        this.loading = false;
        this.sales = _.chain(results[0]).take(10).value()
-       console.log(this.sales);
        drawChart(this.$refs['chart'], this.$refs['tooltip'].$el, results[0].filter(s => sizeForDescription(s.description) == 's'))
-
        drawChart(this.$refs['chart2'], this.$refs['tooltip'].$el, results[0].filter(s => sizeForDescription(s.description) == 'm'))
-
        drawChart(this.$refs['chart3'], this.$refs['tooltip'].$el, results[0].filter(s => sizeForDescription(s.description) == 'xl'))
 
+    })
+    getAuctions().then((onsale) => {
+        this.loadingAuctions = false;
+        this.auctions = _.chain(onsale).take(10).value()
+        drawAuctions(this.$refs['auctionsChart'], this.$refs['auctionsTooltip'].$el, onsale.filter(a => a.size == 's'))
+        drawAuctions(this.$refs['auctionsChart2'], this.$refs['auctionsTooltip'].$el, onsale.filter(a => a.size == 'm'))
+        drawAuctions(this.$refs['auctionsChart3'], this.$refs['auctionsTooltip'].$el, onsale.filter(a => a.size == 'xl'))
     })
   },
 }
@@ -117,9 +150,39 @@ async function fetchData() {
             permalink: s.asset.permalink,
             assetContract: s.asset.asset_contract.address
         }))
-     console.log(sales);
      return sales;
 }
+
+async function getAuctions() {
+    var results = [];
+    var onsale = [];
+    var offset = 0;
+
+    do {
+        await sleep(1000);
+        var api = `https://api.opensea.io/wyvern/v1/orders?bundled=false&include_bundled=false&include_invalid=false&limit=50&offset=${offset}&order_by=eth_price&order_direction=asc&asset_contract_address=0x913ae503153d9a335398d0785ba60a2d63ddb4e2&side=1&payment_token_address=0x0000000000000000000000000000000000000000`;
+
+        let response = await fetch(api);
+        let json = await response.json();
+        results = json.orders;
+
+        json.orders.forEach((order) => {
+            onsale.push({
+                id: order.asset.token_id,
+                permalink: order.asset.permalink,
+                price: order.current_price / 1e18,
+                size: sizeForDescription(order.asset.description),
+                date: new Date(order.created_date),
+                dateStr: d3.timeFormat( "%Y-%m-%d %H:%M:%S")(new Date(order.created_date)),
+            });
+        })
+
+        offset += 50;
+    } while (results.length > 0 && onsale.length < 200);
+    
+    return onsale;
+}
+
 
 function drawChart(el, tooltip, data) {
 
@@ -192,6 +255,116 @@ function drawChart(el, tooltip, data) {
         })
 
     
+}
+
+function drawAuctions(el, tooltip, data) {
+    var margin = {top: 10, right: 30, bottom: 30, left: 60},
+          width = 460 - margin.left - margin.right,
+          height = 200 - margin.top - margin.bottom;
+    
+      // append the svg object to the body of the page
+      var svg = d3.select(el)
+        .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");      
+    
+      // Add X axis --> it is a date format
+      var x = d3.scaleLinear()
+      .domain([0, data.length])
+      .range([ 0, width ]);
+      svg.append("g")
+        .attr('class', 'axis')
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x).ticks(4))
+        .append("text")
+        .style("fill", "currentColor")
+        .attr("x", width)
+        .attr("y", -6)
+        .style("text-anchor", "end")
+        .text("Rank");
+    
+      var max = d3.max(data, d => +d.price);
+      var min = d3.min(data, d => +d.price);
+    
+      // Add Y axis
+      var y = d3.scaleLinear()
+      .domain([min - ((max - min) * 0.3), max + ((max - min) * 0.2)])
+      .range([ height, 0 ]);
+      svg.append("g")
+        .attr('class', 'axis')
+        .call(d3.axisLeft(y).ticks(3))
+        .append("text")
+        .style("fill", "currentColor")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Price (ETH)");
+    
+
+      // Add the line
+      svg.append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", (d) => colorForSize(d[0].size))
+        .attr("stroke-width", 1.5)
+        .attr("d", d3.line().curve(d3.curveStepAfter)
+              .x((d, i) => x(i))
+              .y((d) => y(d.price))
+        )
+
+    var tip = d3.select(tooltip);
+
+    svg
+        .append('rect')
+        .style("fill", "none")
+        .style("pointer-events", "all")
+        .attr('width', width)
+        .attr('height', height)
+        .on('mouseover', mouseover)
+        .on('mousemove', mousemove)
+        .on('mouseout', mouseout);
+
+    var focus = svg
+        .append('g')
+        .append('path')
+        .style("stroke", "#fff")
+        .style("stroke-width", "0.5px")
+        .style("stroke-dasharray", "5,5")
+        .style("opacity", 0)
+        .style("pointer-events", "none")
+
+    function mouseover() {
+        tip.transition().duration(100).style("opacity", 1);
+        focus.transition().duration(100).style("opacity", 1);
+    }
+    function mouseout() {
+        tip.transition().duration(100).style("opacity", 0);
+        focus.transition().duration(100).style("opacity", 0);
+    }
+    function mousemove(event) {
+        var pointerX = d3.pointer(event)[0]
+        var x0 = Math.floor(x.invert(pointerX));
+        var datum = data[x0];
+
+        focus
+        .attr("d", function () {
+            var d = "M" + pointerX + "," + 0;
+            d += " " + pointerX + "," + height;
+            d += "M" + 0 + "," + y(datum.price);
+            d += " " + width + "," + y(datum.price);
+            return d;
+        })
+
+        tip.style("left", event.pageX + "px").style("top", event.pageY + "px");
+        tip
+            .selectAll('div')
+            .html(`#${datum.id}<br/>${datum.price} ETH`)
+            .attr('fill', '#ffffff')
+    }
 }
 
 </script>
