@@ -43,7 +43,7 @@
         <div class="container">
         <div class="explainer">
             <p><a href="https://etherscan.io/token/0xbc6da0fe9ad5f3b0d58160288917aa56653660e9" target="_blank">alUSD</a> is the stablecoin that is minted when users take out a loan using Alchemix.
-            It can be traded for other stable coins using a dedicated stable swap pool on <a href="https:/crv.finance" target="_blank">crv.finance</a>, 
+            It can be traded for other stable coins using a dedicated stable swap pool on <a href="https://crv.to" target="_blank">crv.to</a>, 
             or "transmuted" to DAI over time using the <a href="https://app.alchemix.fi/transmute" target="_blank">Alchemix transmuter</a>.</p>
             <p>It can also be staked to earn ALCX tokens in the <a href="https://app.alchemix.fi/farms" target="_blank">alUSD pool</a>.</p>
             <p class="source"><a href="https://velocity-app.flipsidecrypto.com/shareable/al-usd-supply-6PapN6" target="_blank">Source Data →</a></p>
@@ -108,7 +108,8 @@
                 StakingPools: <a href="https://etherscan.io/address/0xAB8e74017a8Cc7c15FFcCd726603790d26d7DeCa" target="_blank">0xAB8e74017a8Cc7c15FFcCd726603790d26d7DeCa →</a><br/>
                 TimeToken: <a href="https://etherscan.io/address/0x869d1b8610c038A6C4F37bD757135d4C29ae8917" target="_blank">0x869d1b8610c038A6C4F37bD757135d4C29ae8917 →</a><br/>
                 MultiSigWalletWithTimeLock: <a href="https://etherscan.io/address/0x8392F6669292fA56123F71949B52d883aE57e225" target="_blank">0x8392F6669292fA56123F71949B52d883aE57e225 →</a><br/>
-                SLP token: <a href="https://etherscan.io/address/0xc3f279090a47e80990fe3a9c30d24cb117ef91a8" target="_blank">0xc3f279090a47e80990fe3a9c30d24cb117ef91a8 →</a>
+                SLP token: <a href="https://etherscan.io/address/0xc3f279090a47e80990fe3a9c30d24cb117ef91a8" target="_blank">0xc3f279090a47e80990fe3a9c30d24cb117ef91a8 →</a><br/>
+                Curve LP token: <a href="https://etherscan.io/address/0x43b4fdfd4ff969587185cdb6f0bd875c5fc83f8c" target="_blank">0x43b4FdFD4Ff969587185cDB6f0BD875c5Fc83f8c →</a>
             </p>
         </div>
     </div>
