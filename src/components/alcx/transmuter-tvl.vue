@@ -3,6 +3,7 @@
         <div v-if="loading" class="loader"><Loading/></div>
         <div :style="{display: loading ? 'none' : 'block'}">
             <div class="title">Transmuter Balance</div>
+            <p style="text-align: center; margin-left: 50px; margin-right: 50px;"><b>2021-04-04 Note:</b> The transmuter is currently undergoing a migration! this chart will be updated with the migration is complete.</p>
             <div ref="chart"></div>
         </div>
         <Tooltip ref="tooltip"/>
@@ -37,7 +38,6 @@ export default {
     ])
     .then((results) => {
        this.loading = false;
-       console.log(this.$refs['tooltip']);
        drawChart(this.$refs['chart'], this.$refs['tooltip'].$el, results[0])
     })
   },
