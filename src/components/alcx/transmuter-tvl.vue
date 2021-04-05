@@ -3,7 +3,7 @@
         <div v-if="loading" class="loader"><Loading/></div>
         <div :style="{display: loading ? 'none' : 'block'}">
             <div class="title">Transmuter Balance</div>
-            <p style="text-align: center; margin-left: 50px; margin-right: 50px;"><b>2021-04-04 Note:</b> The transmuter is currently undergoing a migration! This chart will be updated with the migration is complete.</p>
+            <p style="text-align: center; margin-left: 50px; margin-right: 50px;"><b>2021-04-05 Note:</b> The transmuter was successfully migrated to a new smart contract (TransmuterB) that uses idle DAI to enhance loan payback APY.</p>
             <div ref="chart"></div>
         </div>
         <Tooltip ref="tooltip"/>
@@ -44,7 +44,7 @@ export default {
 }
 
 async function fetchData() {
-    const api = 'https://api.flipsidecrypto.com/api/v2/queries/855a2158-68df-4e17-81a3-33612f2485ac/data/latest';
+    const api = 'https://api.flipsidecrypto.com/api/v2/queries/cff68eb0-7300-4480-818b-26967178911e/data/latest';
     const response = await axios({
         url: api,
         method: "get",

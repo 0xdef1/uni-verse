@@ -54,12 +54,12 @@
     </div>
     <div class="container">
         <div class="explainer">
-            <p>The <a href="https://etherscan.io/address/0xaB7A49B971AFdc7Ee26255038C82b4006D122086" target="_blank">Transmuter</a> completes the life cycle of alUSD. It backstops the peg by guaranteeing that all outstanding alUSD 
+            <p>The <a href="https://etherscan.io/address/0xf3cFfaEEa177Db444b68FB6f033d4a82f6D8C82d" target="_blank">Transmuter</a> completes the life cycle of alUSD. It backstops the peg by guaranteeing that all outstanding alUSD 
             can be converted 1:1 to DAI. </p> 
             <p>When alUSD is staked in the transmuter, it is converted to DAI over time via the proceeds from loan repayments. When DAI is 
             evenutally claimed, the staked alUSD is burned.
             </p>
-            <p class="source"><a href="https://velocity-app.flipsidecrypto.com/shareable/alchemix-transmuter-tvl-hlVJVi" target="_blank">Source Data →</a></p>
+            <p class="source"><a href="https://velocity-app.flipsidecrypto.com/shareable/alchemix-transmuter-b-tvl-s8bnHU" target="_blank">Source Data →</a></p>
         </div>
         <div class="chart">
                 <TransmuterTVL/>
@@ -108,6 +108,8 @@
                 StakingPools: <a href="https://etherscan.io/address/0xAB8e74017a8Cc7c15FFcCd726603790d26d7DeCa" target="_blank">0xAB8e74017a8Cc7c15FFcCd726603790d26d7DeCa →</a><br/>
                 TimeToken: <a href="https://etherscan.io/address/0x869d1b8610c038A6C4F37bD757135d4C29ae8917" target="_blank">0x869d1b8610c038A6C4F37bD757135d4C29ae8917 →</a><br/>
                 MultiSigWalletWithTimeLock: <a href="https://etherscan.io/address/0x8392F6669292fA56123F71949B52d883aE57e225" target="_blank">0x8392F6669292fA56123F71949B52d883aE57e225 →</a><br/>
+                TransmuterB: <a href="https://etherscan.io/address/0xf3cFfaEEa177Db444b68FB6f033d4a82f6D8C82d" target="_blank">0xf3cFfaEEa177Db444b68FB6f033d4a82f6D8C82d →</a><br/>
+                TransmuterVaultAdapter: <a href="https://etherscan.io/address/0x491EAFC47D019B44e13Ef7cC649bbA51E15C61d7" target="_blank">0x491EAFC47D019B44e13Ef7cC649bbA51E15C61d7 →</a><br/>
                 SLP token: <a href="https://etherscan.io/address/0xc3f279090a47e80990fe3a9c30d24cb117ef91a8" target="_blank">0xc3f279090a47e80990fe3a9c30d24cb117ef91a8 →</a><br/>
                 Curve LP token: <a href="https://etherscan.io/address/0x43b4fdfd4ff969587185cdb6f0bd875c5fc83f8c" target="_blank">0x43b4FdFD4Ff969587185cDB6f0BD875c5Fc83f8c →</a>
             </p>
