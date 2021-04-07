@@ -49,7 +49,7 @@ async function fetchData() {
         url: api,
         method: "get",
      });
-     return _.sortBy(response.data.map(d => ({date: d3.isoParse(d.t), tvl: d.tvl})), 'date')
+     return _.sortBy(response.data.map(d => ({date: d3.isoParse(d.t), tvl: d.vault})), 'date')
 }
 
 function drawChart(el, tooltip, data) {
