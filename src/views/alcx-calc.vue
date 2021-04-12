@@ -269,7 +269,6 @@ function drawChart(el, tooltip, deposit, borrow, apy) {
         var pointerX = d3.pointer(event)[0]
         var x0 = x.invert(pointerX);
         var i = bisect(midData, x0);
-        console.log(i)
         var debt = midData[i-1].y;
         var date = midData[i-1].x;
 
