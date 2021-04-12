@@ -165,7 +165,7 @@ function drawChart(el, tooltip, deposit, borrow, apy) {
         .attr("y", 5)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Debt");
+        .text("Remaining Debt");
 
     var lowerFn = function(x) {
         return Math.max(0, borrow - (Math.pow(1 + (apy / 365), x) - 1) * deposit)
