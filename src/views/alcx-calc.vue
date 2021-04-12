@@ -1,9 +1,8 @@
 <template>
     <div>
-        <h1>Alchemix Loan Calculator</h1>
+        <h1>ALCHEMIX LOAN CALCULATOR</h1>
         <div class="container">
             <div class="explainer">
-
                 <div style="margin-bottom: 30px; padding: 20px; background: #ffffff20; border-radius: 10px">
                     <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 10px">
                         <div>Collateral:</div><div style="text-align: right">{{deposit.toLocaleString()}}</div>
@@ -45,15 +44,22 @@
                         :min="0.01" 
                         :max="0.5" 
                         :interval="0.001" 
+                        :duration="0" 
                         :tooltip-formatter="val => (val * 100).toFixed(1) + '%'"
                         v-on:change="updateChart"/>
                 </div>
             </div>
             <div class="chart">
+                <div class="backdrop" style="margin-bottom: 10px; width: 400px; padding: 30px; font-size: 25px; font-weight: bold">
+                    <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 10px">
+                        <div style="color: #566c83">Duration:</div><div style="text-align: right">{{((maturityDate - Date.now())/(1000*60*60*24)).toFixed(0) + ' Days'}}</div>
+                    </div>
+                    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                        <div style="color: #566c83">Maturity Date:</div><div style="text-align: right">{{maturityDate.toLocaleDateString()}}</div>
+                    </div>
+                </div>
                 <div class="backdrop">
-                    <div class="title">Projection</div>
-                    <div class="subtitle"> <b>Maturity Date: {{maturityDate.toLocaleDateString()}}</b></div>
-                    <div ref="chart"></div>
+                    <div style="margin-top: 20px;" ref="chart"></div>
                     
                 </div>
                 <Tooltip ref="tooltip"/>
