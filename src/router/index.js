@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/home.vue'
 import UniVerse from '../views/uni-verse.vue'
 import ALCX from '../views/alcx.vue'
+import ALCXCalc from '../views/alcx-calc.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/alcx',
     name: 'ALCX',
     component: ALCX
+  },
+  {
+    path: '/alcx/calculator',
+    name: 'ALCXCalc',
+    component: ALCXCalc
   },
   // {
   //   path: '/about',
