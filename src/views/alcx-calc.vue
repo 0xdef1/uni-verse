@@ -77,9 +77,9 @@ export default {
    },
    data() {
        return {
-           deposit: 50000,
-           borrow: 25000,
-           apy: 0.32,
+           deposit: 70000,
+           borrow: 35000,
+           apy: 0.30,
        }
    },
    methods: {
@@ -124,7 +124,7 @@ function nextNewYear(date) {
 function drawChart(el, tooltip, deposit, borrow, apy) {
     var margin = {top: 10, right: 30, bottom: 40, left: 60},
         width = 460 - margin.left - margin.right,
-        height = 250 - margin.top - margin.bottom;
+        height = 350 - margin.top - margin.bottom;
 
     d3.select(el).selectAll('svg').remove()
 
@@ -154,7 +154,7 @@ function drawChart(el, tooltip, deposit, borrow, apy) {
 
     // Add Y axis
     var y = d3.scaleLinear()
-        .domain([ 0, Math.ceil(borrow / 10000) * 10000 * 1.1])
+        .domain([ 0, 51000])
         .range([ height, 0 ]);
     svg.append("g")
         .attr('class', 'axis')
