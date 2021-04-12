@@ -154,7 +154,7 @@ function drawChart(el, tooltip, deposit, borrow, apy) {
 
     // Add Y axis
     var y = d3.scaleLinear()
-        .domain([ 0, borrow * 1.2])
+        .domain([ 0, Math.ceil(borrow / 10000) * 10000 * 1.1])
         .range([ height, 0 ]);
     svg.append("g")
         .attr('class', 'axis')
