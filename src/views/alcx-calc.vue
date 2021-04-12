@@ -3,24 +3,61 @@
         <h1>Alchemix Loan Calculator</h1>
         <div class="container">
             <div class="explainer">
-                <p>
-                    Collateral:
-                    <vue-slider v-model="deposit" :lazy="true" :min="1000" :max="100000" :interval="100" :duration="0" v-on:change="updateDeposit"/>
-                </p>
-                <p>
-                    Borrowed:
-                    <vue-slider v-model="borrow" lazy="true" :min="1000" :max="50000" :interval="100" :duration="0" v-on:change="updateBorrow"/>
-                </p>
-                <p>
-                    Interest Rate:
-                    <vue-slider v-model="apy" lazy="true" :min="0.01" :max="0.5" :interval="0.001" v-on:change="updateChart"/>
-                </p>
-                
+
+                <div style="margin-bottom: 30px; padding: 20px; background: #ffffff20; border-radius: 10px">
+                    <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 10px">
+                        <div>Collateral:</div><div style="text-align: right">{{deposit.toLocaleString()}}</div>
+                    </div>
+                    <vue-slider 
+                        v-model="deposit" 
+                        :tooltip="'active'" 
+                        :use-keyboard="false" 
+                        :lazy="true" 
+                        :min="1000" 
+                        :max="100000" 
+                        :interval="100" 
+                        :duration="0" 
+                        :tooltip-formatter="val => val.toLocaleString()"
+                        v-on:change="updateDeposit"/>
+                </div>
+                <div style="margin-bottom: 30px; padding: 20px; background: #ffffff20; border-radius: 10px">
+                    <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 10px">
+                        <div>Borrowed:</div><div style="text-align: right">{{borrow.toLocaleString()}}</div>
+                    </div>
+                    <vue-slider 
+                        v-model="borrow" 
+                        :tooltip="'active'" 
+                        :use-keyboard="false" 
+                        :lazy="true" 
+                        :min="1000" 
+                        :max="50000" 
+                        :interval="100" 
+                        :duration="0" 
+                        :tooltip-formatter="val => val.toLocaleString()"
+                        v-on:change="updateBorrow"/>
+                </div>
+                <div style="margin-bottom: 30px; padding: 20px; background: #ffffff20; border-radius: 10px">
+                    <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 10px">
+                        <div>APY:</div><div style="text-align: right">{{(apy * 100).toFixed(1) + '%'}}</div>
+                    </div>
+                    <vue-slider 
+                        v-model="apy" 
+                        :tooltip="'active'" 
+                        :use-keyboard="false" 
+                        :lazy="true" 
+                        :min="0.01" 
+                        :max="0.5" 
+                        :interval="0.001" 
+                        :tooltip-formatter="val => (val * 100).toFixed(1) + '%'"
+                        v-on:change="updateChart"/>
+                </div>
             </div>
             <div class="chart">
                 <div class="backdrop">
-                    <div class="title">Maturity Projection</div>
+                    <div class="title">Projection</div>
+                    <div class="subtitle"> <b>Maturity Date: {{maturityDate.toLocaleDateString()}}</b></div>
                     <div ref="chart"></div>
+                    
                 </div>
                 <Tooltip ref="tooltip"/>
             </div>
@@ -30,7 +67,7 @@
 </template>
 <script>
 import VueSlider from 'vue-slider-component'
-import 'vue-slider-component/theme/antd.css'
+import '@/assets/slider-theme.css'
 import Tooltip from '@/components/tooltip.vue'
 import abbreviateNumber from '@/data/abbreviate-number.js'
 const d3 = require('d3')
@@ -45,7 +82,7 @@ export default {
        return {
            deposit: 50000,
            borrow: 25000,
-           apy: 0.32
+           apy: 0.32,
        }
    },
    methods: {
@@ -69,6 +106,12 @@ export default {
     mounted() {
        this.updateChart()
     },
+    computed: {
+        maturityDate: function() {
+            var midDays = this.borrow / (this.deposit * this.apy) * 365;
+            return incrementDate(Date.now(), midDays)
+        }
+    }
 }
 
 function incrementDate(date, amount) {
@@ -276,6 +319,7 @@ function drawChart(el, tooltip, deposit, borrow, apy) {
   text-align: left;
   margin-right: 20px;
   margin-top: 20px;
+  font-size: 25px;
 }
 
 .chart {
@@ -312,6 +356,11 @@ a:hover {
   margin-top: 10px;
   margin-bottom: 10px;
   color: #566c83;
+}
+.subtitle {
+    margin-left: 60px; 
+    margin-bottom: 20px;
+    color: #566c83;
 }
 
 .axis text {
