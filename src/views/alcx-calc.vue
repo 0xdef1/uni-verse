@@ -1,8 +1,17 @@
 <template>
     <div>
-        <h1>ALCHEMIX LOAN CALCULATOR</h1>
+        <h1>DYOR: ALCHEMIX</h1>
+        <h2>Loan Calculator by <a href="https://twitter.com/0xdef1">0xdef1</a></h2>
+        <div class="container">
+            <div class="intro">
+                Alchemix loans repay themselves by using your collateral to generate yield and pay down your debt. The amount of time it takes
+                for a load to be repaid depends on the amount of collateral you deposit, the amount you borrow, and the amount of yield
+                the protocol is able to generate. 
+            </div>
+        </div>
         <div class="container">
             <div class="explainer">
+                <p>Use the sliders below to simulate loan durations for various combinations of parameters.</p>
                 <div style="margin-bottom: 30px; padding: 20px; background: #ffffff20; border-radius: 10px">
                     <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 10px">
                         <div>Collateral:</div><div style="text-align: right">{{deposit.toLocaleString()}}</div>
@@ -65,7 +74,6 @@
                 <Tooltip ref="tooltip"/>
             </div>
         </div>
-
     </div>
 </template>
 <script>
@@ -300,6 +308,11 @@ function drawChart(el, tooltip, deposit, borrow, apy) {
 
 </script>
 <style scoped>
+
+h1 {
+    margin-bottom: 0px;
+}
+
 .container {
   margin-top: 10px;
   margin-bottom: 70px;
