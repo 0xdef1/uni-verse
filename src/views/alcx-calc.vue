@@ -12,7 +12,6 @@
                         v-model="deposit" 
                         :tooltip="'active'" 
                         :use-keyboard="false" 
-                        :lazy="true" 
                         :min="1000" 
                         :max="100000" 
                         :interval="100" 
@@ -28,7 +27,6 @@
                         v-model="borrow" 
                         :tooltip="'active'" 
                         :use-keyboard="false" 
-                        :lazy="true" 
                         :min="1000" 
                         :max="50000" 
                         :interval="100" 
@@ -44,7 +42,6 @@
                         v-model="apy" 
                         :tooltip="'active'" 
                         :use-keyboard="false" 
-                        :lazy="true" 
                         :min="0.01" 
                         :max="0.5" 
                         :interval="0.001" 
@@ -119,6 +116,11 @@ function incrementDate(date, amount) {
     return new Date(tmpDate.getTime()+1000*60*60*24*amount)
 }
 
+function nextNewYear(date) {
+    var tmpDate = new Date(date.getFullYear() + 1, 0);
+    return tmpDate
+}
+
 function drawChart(el, tooltip, deposit, borrow, apy) {
     var margin = {top: 10, right: 30, bottom: 40, left: 60},
         width = 460 - margin.left - margin.right,
@@ -135,15 +137,15 @@ function drawChart(el, tooltip, deposit, borrow, apy) {
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")")
 
-    var buffer = 0.1;
+    var buffer = 0.2;
     var midDays = borrow / (deposit * apy) * 365;
     var upperDays = borrow / (deposit * apy * (1 - buffer)) * 365;
-    var lowerDays = Math.log((borrow + deposit) / deposit) / Math.log(1 + ((apy * (1 + buffer))/ 365));
+    var lowerDays = Math.log((borrow + deposit) / deposit) / Math.log(1 + (apy/ 365));
 
     var startDate = Date.now();
 
     var x = d3.scaleTime()
-        .domain([startDate, incrementDate(startDate, upperDays * 1.2)])
+        .domain([startDate, nextNewYear(incrementDate(startDate, midDays))])
         .range([ 0, width ]);
     svg.append("g")
         .attr('class', 'axis')
@@ -166,7 +168,7 @@ function drawChart(el, tooltip, deposit, borrow, apy) {
         .text("Debt");
 
     var lowerFn = function(x) {
-        return Math.max(0, borrow - (Math.pow(1 + ((apy * (1 + buffer)) / 365), x) - 1) * deposit)
+        return Math.max(0, borrow - (Math.pow(1 + (apy / 365), x) - 1) * deposit)
     }
 
     var midFn = function(x) {
@@ -206,28 +208,28 @@ function drawChart(el, tooltip, deposit, borrow, apy) {
     svg.append('path')
         .datum(d3.range(0, upperDays).concat(upperDays))
         .attr('d', area)
-        .attr('fill', '#e615b150')
+        .attr('fill', '#e615b130')
 
-    svg.append('path')
-        .datum(lowerData)
-        .attr('d', line)
-        .attr("stroke", "#e615b1")
-        .attr("stroke-width", 1)
-        .attr('fill', 'none')
+    // svg.append('path')
+    //     .datum(lowerData)
+    //     .attr('d', line)
+    //     .attr("stroke", "#e615b1")
+    //     .attr("stroke-width", 1)
+    //     .attr('fill', 'none')
 
     svg.append('path')
         .datum(midData)
         .attr('d', line)
-        .attr("stroke", "#6C91BF")
+        .attr("stroke", "#e615b1")
         .attr("stroke-width", 1.5)
         .attr('fill', 'none')
 
-    svg.append('path')
-        .datum(upperData)
-        .attr('d', line)
-        .attr("stroke", "#e615b1")
-        .attr("stroke-width", 1)
-        .attr('fill', 'none')
+    // svg.append('path')
+    //     .datum(upperData)
+    //     .attr('d', line)
+    //     .attr("stroke", "#e615b1")
+    //     .attr("stroke-width", 1)
+    //     .attr('fill', 'none')
 
     var tip = d3.select(tooltip);
 
