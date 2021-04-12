@@ -24,7 +24,7 @@ const routes = [
     component: ALCX
   },
   {
-    path: '/alcx-calc',
+    path: '/alcx/calculator',
     name: 'ALCXCalc',
     component: ALCXCalc
   },

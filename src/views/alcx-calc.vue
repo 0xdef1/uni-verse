@@ -5,7 +5,7 @@
         <div class="container">
             <div class="intro">
                 Alchemix loans repay themselves by using your collateral to generate yield and pay down your debt. The amount of time it takes
-                for a load to be repaid depends on the amount of collateral you deposit, the amount you borrow, and the amount of yield
+                for a loan to be repaid depends on the amount of collateral you deposit, the amount you borrow, and the amount of yield
                 the protocol is able to generate. 
             </div>
         </div>
