@@ -174,4 +174,4 @@ function drawChart(el, tooltip, data) {
 
 
 </script>
-
+<style lang="css" src="@/assets/dyor.css" scoped></style>
