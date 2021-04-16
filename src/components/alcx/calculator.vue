@@ -82,7 +82,7 @@ export default {
        return {
            deposit: 50000,
            borrow: 25000,
-           apy: 0.25,
+           apy: 0.291,
        }
    },
    methods: {
