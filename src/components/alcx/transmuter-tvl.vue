@@ -3,7 +3,7 @@
         <div v-if="loading" class="loader"><Loading/></div>
         <div :style="{display: loading ? 'none' : 'block'}">
             <div class="title">Transmuter Balance</div>
-            <p style="text-align: center; margin-left: 50px; margin-right: 50px;"><b>2021-04-05 Note:</b> The transmuter was successfully migrated to a new smart contract (TransmuterB) that uses idle DAI to enhance loan payback APY.</p>
+            <p style="text-align: center; margin-left: 50px; margin-right: 50px; font-size: 20px"><b>2021-04-05 Note:</b> The transmuter was successfully migrated to a new smart contract (TransmuterB) that uses idle DAI to enhance loan payback APY.</p>
             <div ref="chart"></div>
         </div>
         <Tooltip ref="tooltip"/>
@@ -172,4 +172,5 @@ function drawChart(el, tooltip, data) {
 
 
 </script>
+<style lang="css" src="@/assets/dyor.css" scoped></style>
 

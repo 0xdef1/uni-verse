@@ -23,7 +23,9 @@
 
                <a href="https://velocity-app.flipsidecrypto.com/shareable/alchemix-alchemist-tvl-p4NZME" target="_blank">Deposits →</a>
                <a href="https://velocity-app.flipsidecrypto.com/shareable/alchemix-transmuter-tvl-hlVJVi" target="_blank">Transmuter Balance →</a>
+               <router-link to="/alcx/calculator">Alchemix Loan Calculator →</router-link>
                <a href="#resources">Other Resources →</a>
+               
                </div>
             </div>
         </div>
@@ -65,6 +67,7 @@
                 <TransmuterTVL/>
         </div>
     </div>
+    <LoanCalculator/>
     <div class="container">
         <div class="explainer">
             <p>To bootstrap liquidity for alUSD, Alchemix launched with incentivized staking pools, where users can deposit capital and earn
@@ -127,6 +130,7 @@ import alUSDSupply from '@/components/alcx/alusd-supply.vue'
 import AlchemistTVL from '@/components/alcx/alchemist-tvl.vue'
 import TransmuterTVL from '@/components/alcx/transmuter-tvl.vue'
 import FarmsTVL from '@/components/alcx/farms-tvl.vue'
+import LoanCalculator from '@/components/alcx/calculator.vue'
 
 
 export default {
@@ -136,134 +140,9 @@ export default {
     alUSDSupply,
     AlchemistTVL,
     TransmuterTVL,
-    FarmsTVL
+    FarmsTVL,
+    LoanCalculator
   }
 }
 </script>
-
-<style scoped>
-p {
-    font-size: 25px;
-}
-
-.quicklinks {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  margin-bottom: 20px;
-}
-
-.quicklinks div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.quicklinks a {
-    display: inline-block;
-    font-size: 16px;
-}
-
-.alcx {
-    color: #ffffffa0;
-}
-
-h1 {
-    margin-bottom: 0;
-    color: #566c83;
-}
-
-h2 {
-    margin-top: 0;
-    color: #566c83;
-}
-
-.container {
-  margin-top: 10px;
-  margin-bottom: 70px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.intro {
-    text-align: left;
-    width: 600px;
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
-.intro p {
-    font-size: 20px;
-}
-
-.explainer {
-  width: 400px;
-  text-align: left;
-  margin-right: 20px;
-  margin-top: 20px;
-}
-
-.chart {
-    width: 500px;
-    text-align: left;
-}
-
-.chart >>> svg {
-    cursor: crosshair;
-}
-
-a {
-    font-weight: bold;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-
-
-.backdrop {
-    background: #1f2227; 
-    box-shadow: 0px 0px 50px #00000080; 
-    padding-top: 10px;
-    display: inline-block;
-    margin: 20px;
-}
-
-.source {
-    font-size: 20px;
-}
-
-</style>
-
-<style>
-
-.loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 460px;
-    height: 420px;
-}
-
-.title {
-  font-size: 48px;
-  font-weight: bold;
-  margin-left: 60px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color: #566c83;
-}
-
-.axis text {
-    font-family: 'Ubuntu Mono';
-    font-size: 13px;
-    font-weight: bold;
-    fill: #ffffffa0;
-}
-
-</style>
+<style lang="css" src="@/assets/dyor.css" scoped></style>
