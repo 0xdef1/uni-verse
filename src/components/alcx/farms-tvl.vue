@@ -44,12 +44,12 @@ export default {
 }
 
 async function fetchData() {
-    const api = 'https://api.flipsidecrypto.com/api/v2/queries/d55ad9e1-2454-4b6a-8939-059b6eb4050d/data/latest';
+    const api = 'https://api.flipsidecrypto.com/api/v2/queries/82e97ebd-0fae-4eed-94df-4a57b96748d3/data/latest';
     const response = await axios({
         url: api,
         method: "get",
      });
-     return _.sortBy(response.data.map(d => ({date: d3.isoParse(d.balance_date), al3usd: d.al3usd_tvl, alcx: d.alcx_tvl, alusd: d.alusd_tvl, slp: d.slp_tvl})), 'date')
+     return _.sortBy(response.data.map(d => ({date: d3.isoParse(d.BALANCE_DATE), al3usd: d.AL3USD_TVL, alcx: d.ALCX_TVL, alusd: d.ALUSD_TVL, slp: d.SLP_TVL})), 'date')
 }
 
 function drawChart(el, tooltip, data) {
