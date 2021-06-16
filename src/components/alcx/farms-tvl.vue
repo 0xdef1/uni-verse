@@ -44,7 +44,7 @@ export default {
 }
 
 async function fetchData() {
-    const api = 'https://api.flipsidecrypto.com/api/v2/queries/82e97ebd-0fae-4eed-94df-4a57b96748d3/data/latest';
+    const api = 'https://api.flipsidecrypto.com/api/v2/queries/614407a1-e45d-47e0-bc58-77b1e56bcaa7/data/latest';
     const response = await axios({
         url: api,
         method: "get",
